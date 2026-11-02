@@ -232,6 +232,31 @@ ul, ol { padding: 0; list-style: none; }
   border-bottom: 1px solid transparent; width: fit-content;
 }
 .pathReset:hover, .pathReset:focus-visible { color: var(--gold); border-bottom-color: var(--goldDim); }
+
+/* 身份选择 */
+.who { min-height: 100vh; display: grid; place-items: center; padding: 40px 24px; }
+.whoInner { width: min(760px, 100%); }
+.whoTitle { font-family: var(--serif); font-size: clamp(30px, 5vw, 46px); letter-spacing: .1em; margin: 14px 0 10px; }
+.whoLede { font-size: 13.5px; line-height: 2; color: var(--ink3); max-width: 520px; }
+.whoCards { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 34px; border-top: 1px solid var(--line2); }
+.whoCard {
+  display: grid; gap: 6px; padding: 26px 18px 28px; text-align: left;
+  border-bottom: 1px solid var(--line2); border-right: 1px solid var(--line2);
+  transition: background-color .3s;
+}
+.whoCard:last-child { border-right: 0; }
+.whoCard:hover, .whoCard:focus-visible { background: rgba(198,166,100,.05); }
+.whoCard.is-on { background: rgba(198,166,100,.08); }
+.whoZh { font-family: var(--serif); font-size: 22px; color: var(--ink); letter-spacing: .08em; }
+.whoEn { font-size: 10.5px; letter-spacing: .24em; color: var(--gold); }
+.whoNote { font-size: 12px; line-height: 1.9; color: var(--ink3); }
+.homeWho { margin-top: 18px; font-size: 12px; letter-spacing: .1em; color: var(--ink3); }
+.homeWho b { color: var(--ink2); font-weight: 400; letter-spacing: .08em; }
+.homeWho .link { margin-left: 12px; }
+@media (max-width: 640px) {
+  .whoCards { grid-template-columns: 1fr; }
+  .whoCard { border-right: 0; }
+}
 .pathDeep::before { background: var(--blood); }
 .path:hover .pathTitle, .path:focus-visible .pathTitle { color: var(--gold); }
 .pathDeep:hover .pathTitle, .pathDeep:focus-visible .pathTitle { color: var(--blood); }
@@ -1073,7 +1098,7 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
     cost: '别人开始只听见你在说自己，听不见事。',
     practice: '下次做成一件事，把它写在纸上，不发给任何人。',
     insight: '邀功把成果换成注意力，而注意力是会掉价的。',
-    prompt: '项目上线，你把结果发群里就不再多说。', reverse: true },
+    prompt: '事情做完，你只把结果发出去，不说是谁做的。', reverse: true },
 
   { id: 'sup2', axis: 'v_superbia', name: '双面作秀', latin: 'hypocrisis',
     def: '在人前表现得比实际更认同某些规矩。',
@@ -1464,7 +1489,7 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
   },
   inv4: {
     strength: '当众下不来台的那次，你现在想起还能笑。', strengthRev: true,
-    costQ: '有个能合作的项目，你没去找他。', costRev: false
+    costQ: '后来有个能一起做的事，你没去找他。', costRev: false
   },
 
   /* ── 傲慢 superbia ── */
@@ -1500,13 +1525,13 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
   },
   ira4: {
     strength: '项目出问题，你会先想自己哪一步能改。', strengthRev: true,
-    costQ: '项目出问题，你找过替罪的人。', costRev: false
+    costQ: '项目出问题，你先把责任推给过别人。', costRev: false
   },
 
   /* ── 怠惰 acedia ── */
   ace1: {
     strength: '打开那个文档，你想先去倒杯水。', strengthRev: false,
-    costQ: '你有过答应了交付时间却没交出来。', costRev: false
+    costQ: '你有过答应了什么时候给、结果没给出来。', costRev: false
   },
   ace2: {
     strength: '坐下来之后，你能连着二十分钟不碰手机。', strengthRev: true,
@@ -1528,7 +1553,7 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
   },
   ava2: {
     strength: '报销时你只填真花掉的钱。', strengthRev: true,
-    costQ: '你有过一笔账怕被翻出来的经历。', costRev: false
+    costQ: '你报销完，有过怕被查的时刻。', costRev: false
   },
   ava3: {
     strength: '资源紧张时，你不太会去挤。', strengthRev: true,
@@ -1610,7 +1635,7 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
   },
   pat2: {
     strength: '被点名的时候，你会先问「具体指哪件事」。', strengthRev: false,
-    costQ: '你为那句话，私下跟人抱怨过。', costRev: false
+    costQ: '被指出问题之后，你私下跟人抱怨过。', costRev: false
   },
   pat3: {
     strength: '一件事三周没反馈，你会换方向。', strengthRev: true,
@@ -1628,7 +1653,7 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
   },
   dil3: {
     strength: '你开的事，很多最后没有做完。', strengthRev: true,
-    costQ: '你有过提前交付的时候。', costRev: false
+    costQ: '你有过提前交出去的时候。', costRev: false
   },
 
   /* ── 慷慨 liberalitas ── */
@@ -1670,9 +1695,118 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
   },
   cas3: {
     strength: '手机放在床头，你半夜会拿起来。', strengthRev: true,
-    costQ: '你有过卸了又装回来的经历。', costRev: false
+    costQ: '你删过某个应用，后来又装回来。', costRev: false
   }
 };
+
+</script>
+<script>
+/* 七重 SEVENFOLD — 身份与措辞变体
+   身份只改题面措辞，不改题目 id、不改计分、不进分享链接。 */
+(function (SF) {
+  'use strict';
+
+  SF.IDENTITIES = [
+    { id: 'student', zh: '学生', en: 'STUDENT', note: '在校，考试、作业、社团' },
+    { id: 'work', zh: '在职', en: 'EMPLOYED', note: '上班，汇报、同事、考核' },
+    { id: 'free', zh: '自由职业', en: 'FREELANCE', note: '接活，客户、交付、报价' }
+  ];
+
+  /* 只列需要换措辞的题；在职用原句。键名：面id.维度 */
+  SF.ITEM_VARIANTS = {
+    'inv1.freq': {
+      student: '同学拿了奖学金，你跟别人说起时会加一句「他运气好」。',
+      free: '同行接了个大单，你跟别人说起时会加一句「他运气好」。'
+    },
+    'inv4.cost': {
+      student: '后来有个能一起参加的比赛，你没去找那个人。',
+      free: '后来有个能一起接的活，你没去找那个人。'
+    },
+    'sup1.str': {
+      student: '答辩结尾，你想办法让老师知道关键那步是你做的。',
+      free: '交付结尾，你想办法让客户知道关键那步是你做的。'
+    },
+    'sup1.cost': {
+      student: '有同学当面夸你，转身却躲着你。',
+      free: '有同行当面夸你，转身却躲着你。'
+    },
+    'sup2.freq': {
+      student: '你在小组里说要按分工来，自己遇到麻烦就跳过去。',
+      free: '你跟客户说要按约定来，自己遇到麻烦就跳过去。'
+    },
+    'sup2.str': {
+      student: '你在老师和同学面前，说的是同一套话。',
+      free: '你在客户和同行面前，说的是同一套话。'
+    },
+    'sup4.freq': {
+      student: '同学指出你的错误，你先解释，回头才想。',
+      free: '同行指出你的错误，你先解释，回头才想。'
+    },
+    'ira2.freq': {
+      student: '谁在哪次课上让你难堪，你记得清清楚楚。',
+      free: '谁在哪次群里让你难堪，你记得清清楚楚。'
+    },
+    'ira4.freq': {
+      student: '小组作业出问题，你先想到的是谁拖了后腿。',
+      free: '活出了岔子，你先想到的是谁拖了后腿。'
+    },
+    'ira4.str': {
+      student: '小组作业出问题，你会先想自己哪一步能改。',
+      free: '活出了岔子，你会先想自己哪一步能改。'
+    },
+    'ira4.cost': {
+      student: '小组作业出问题，你先把责任推给过别人。',
+      free: '活出了岔子，你先把责任推给过别人。'
+    },
+    'ace1.cost': {
+      student: '你有过答应了小组什么时候交、结果没交出来。',
+      free: '你有过答应了客户什么时候给、结果没给出来。'
+    },
+    'ace3.freq': {
+      student: '投简历被拒一次，你就觉得这行不适合自己。',
+      free: '有个活没谈成，你就觉得这行不适合自己。'
+    },
+    'ace3.cost': {
+      student: '作业被否了，你还惦记着里面有意思的那部分。',
+      free: '活没成，你还惦记着里面有意思的那部分。'
+    },
+    'ace4.cost': {
+      student: '有同学说过你最近很难一起做事。',
+      free: '有客户说过你不好配合。'
+    },
+    'ava2.freq': {
+      student: '学校报销，你会把私人的打车费也填进去。',
+      free: '给客户报账，你会把私人的打车费也填进去。'
+    },
+    'ava3.cost': {
+      student: '一起做过小组作业的人，后来不再找你。',
+      free: '合作过的客户，后来不再找你。'
+    },
+    'ava4.str': {
+      student: '考出一次好成绩，你当晚就在想下一个目标。',
+      free: '一个活得手，你当晚就在找更大的。'
+    },
+    'hum3.freq': {
+      student: '小组展示时，你会点名说这是谁做的。',
+      free: '交付时，你会说是谁配合做的。'
+    },
+    'lib2.freq': {
+      student: '分奖品或加分的时候，你会主动说少拿一点。',
+      free: '项目结款分钱时，你会主动说少拿一点。'
+    }
+  };
+
+  SF.itemText = function (facetId, dim, identity, fallback) {
+    var v = SF.ITEM_VARIANTS[facetId + '.' + dim];
+    if (v && identity && v[identity]) return v[identity];
+    return fallback;
+  };
+
+  SF.identityZh = function (id) {
+    var hit = SF.IDENTITIES.filter(function (x) { return x.id === id; })[0];
+    return hit ? hit.zh : '';
+  };
+})(self.SF = self.SF || {});
 
 </script>
 <script>
@@ -2662,13 +2796,14 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
   var FEEDBACK_HREF = 'mailto:' + FEEDBACK_MAIL + '?subject=' + encodeURIComponent('七重 · 反馈');
   var app = document.getElementById('app');
   var toastEl = document.getElementById('toast');
-  var state = { mode: 'simple', answers: {}, index: 0, name: '', loaded: false };
+  var state = { mode: 'simple', answers: {}, index: 0, name: '', identity: '', loaded: false };
   var currentName = '';
   var advanceTimer = null;
   var pendingPick = null;
   var qmapOpen = false;
   var clearArmTimer = null;
   var resumeHint = 0;
+  var IDKEY = 'sevenfold.identity';
 
   function order() { return ORDERS[state.mode] || ORDERS.simple; }
   function total() { return order().length; }
@@ -2806,6 +2941,7 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
     var parts = h.split('&');
     var head = parts[0];
     if (head === 'home') return { view: 'home' };
+    if (head === 'who') return { view: 'who' };
     if (head === 'method') return { view: 'method' };
     if (head === 'demo' || head === 'demo/deep') return { view: 'demo', mode: head === 'demo/deep' ? 'deep' : 'simple' };
     if (head === 'restart') return { view: 'restart' };
@@ -2825,7 +2961,12 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
     window.scrollTo(0, 0);
     if (SF.music && r.view !== 'result' && r.view !== 'demo') SF.music.setTheme('unified');
     if (r.view === 'cover') return renderCover();
-    if (r.view === 'home') return renderHome();
+    if (r.view === 'who') return renderWho();
+    if (r.view === 'home') {
+      /* 还没选过身份：先去选 */
+      if (!state.identity) { location.replace('#/who'); return renderWho(); }
+      return renderHome();
+    }
     if (r.view === 'method') return renderMethod();
     if (r.view === 'restart') {
       state.answers = {};
@@ -2861,7 +3002,32 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
       + '    <h1 class="coverTitle">七宗罪<span>与</span>七美德</h1>'
       + '    <p class="coverLatin">FOURTEEN MIRRORS</p>'
       + '    <p class="coverLede">十四面镜。你不必是圣人，<br>也不必是罪人。</p>'
-      + '    <a class="coverStart" href="#/home" data-start><span>开始</span></a>'
+      + '    <a class="coverStart" href="#/who" data-start><span>开始</span></a>'
+      + '  </div>'
+      + '</section>';
+    focusHead();
+  }
+
+  /* ───────── 身份选择 ───────── */
+  function renderWho() {
+    var v = document.getElementById('vinyl');
+    if (v) v.hidden = false;
+    app.innerHTML = ''
+      + '<section class="view who">'
+      + '  <div class="whoInner">'
+      + '    <p class="coverKicker">SEVENFOLD</p>'
+      + '    <h1 class="whoTitle">你现在是</h1>'
+      + '    <p class="whoLede">题目会按这个身份换成你熟悉的场景。身份只改说法，不改结果。</p>'
+      + '    <div class="whoCards">'
+      + SF.IDENTITIES.map(function (it) {
+          var on = state.identity === it.id;
+          return '<button class="whoCard' + (on ? ' is-on' : '') + '" type="button" data-who="' + it.id + '">'
+            + '<span class="whoZh">' + esc(it.zh) + '</span>'
+            + '<span class="whoEn">' + esc(it.en) + '</span>'
+            + '<span class="whoNote">' + esc(it.note) + '</span>'
+            + '</button>';
+        }).join('')
+      + '    </div>'
       + '  </div>'
       + '</section>';
     focusHead();
@@ -2909,6 +3075,8 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
       + '    <p class="kicker">SEVEN DEADLY SINS · SEVEN VIRTUES</p>'
       + '    <h1 class="display">七宗罪<br><span class="thin">与</span>七美德</h1>'
       + '    <p class="lede">十四面镜。你不必是圣人，<br>也不必是罪人。</p>'
+      + '    <p class="homeWho">身份 · <b>' + esc(SF.identityZh(state.identity) || '未选') + '</b>'
+      + '      <a class="link" href="#/who">更换</a></p>'
       + '    <div class="paths">'
       + '      <a class="path" href="#/test">'
       + '        <span class="pathKicker">简约探索</span>'
@@ -2969,7 +3137,7 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
       var scale = SCALES[scaleKey] || SCALES.freq;
       body = ''
         + '<p class="qKicker">' + (item.dim === 'freq' ? '自画像' : item.dim === 'str' ? '反应' : '后果') + ' · ' + String(idx + 1).padStart(2, '0') + '</p>'
-        + '<h2 class="qText">' + esc(item.text) + '</h2>'
+        + '<h2 class="qText">' + esc(SF.itemText(String(item.id).split('~')[0], item.dim, state.identity, item.text)) + '</h2>'
         + '<fieldset class="opts optsScale"><legend class="sr">' + scale.legend + '</legend>'
         + scale.labels.map(function (label, i) {
             return '<label class="opt' + (answered === i ? ' on' : '') + '">'
@@ -3775,6 +3943,16 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
   /* ───────── 事件 ───────── */
   app.addEventListener('click', function (e) {
     var t = e.target;
+    var who = t.closest && t.closest('[data-who]');
+    if (who) {
+      var id = who.getAttribute('data-who');
+      var changed = state.identity && state.identity !== id && answeredCount() > 0;
+      state.identity = id;
+      try { localStorage.setItem(IDKEY, id); } catch (err) { /* 忽略 */ }
+      location.hash = '#/home';
+      if (changed) toast('已切换为「' + SF.identityZh(id) + '」的说法，之前的答案保留');
+      return;
+    }
     var reset = t.closest && t.closest('[data-reset]');
     if (reset) {
       e.preventDefault();
@@ -3911,6 +4089,8 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
   SF.toast = toast;
   load();
   try { state.name = localStorage.getItem(STORE + '.name') || state.name; } catch (e) {}
+  try { state.identity = localStorage.getItem(IDKEY) || ''; } catch (e) { /* 忽略 */ }
+  if (state.identity && !SF.IDENTITIES.some(function (x) { return x.id === state.identity; })) state.identity = '';
   var r = parseHash();
   if (r.view === 'test') {
     if (isComplete()) {
