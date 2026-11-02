@@ -995,7 +995,7 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
     cost: '身边的人开始怀疑，你对谁说的好话是真的。',
     practice: '下次想说「不过」时，把后半句咽下去，只讲事实。',
     insight: '贬抑是嫉妒最体面的出口：话说完，你没动，位置却好像被拉平了一点。',
-    prompt: '同事升职的消息传开，你转述时会加一句「其实他运气好」。', reverse: false },
+    prompt: '同事升职，你跟别人说起时会加一句「他运气好」。', reverse: false },
 
   { id: 'inv2', axis: 'v_invidia', name: '幸灾乐祸', latin: 'exsultatio in adversis',
     def: '别人受挫时，你心里那一点不容易承认的痛快。',
@@ -1003,7 +1003,7 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
     cost: '快感只持续几分钟，之后是更长的不舒服。',
     practice: '发现自己在爽的那一下，立刻去处理一件具体的小事。',
     insight: '幸灾乐祸是嫉妒的自供：只有在意的人，你才会为他的失败高兴。',
-    prompt: '他出了岔子，你是从别人嘴里听说的，也没兴趣多问。', reverse: true },
+    prompt: '他出了岔子，你没兴趣多问一句。', reverse: true },
 
   { id: 'inv3', axis: 'v_invidia', name: '优越比较', latin: 'comparatio',
     def: '把关系变成排名，随时确认自己不在下面。',
@@ -1011,7 +1011,7 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
     cost: '你越来越难单纯地跟一个人相处，只剩比较。',
     practice: '挑一次对话，完全不提自己的成绩。',
     insight: '比较一旦开始就没有终点，因为你总能找到比你更快的人。',
-    prompt: '聊天时你会不动声色把话题拐到自己也做得到的地方。', reverse: false },
+    prompt: '聊天时你会把话题拐到自己也能做到的事上。', reverse: false },
 
   { id: 'inv4', axis: 'v_invidia', name: '怨恨敌意', latin: 'odium',
     def: '把对方的优势解读成对自己的掠夺，于是冷淡下来。',
@@ -1019,7 +1019,7 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
     cost: '敌意很少被发现，却一直在后台消耗你的注意力。',
     practice: '把「他欠我」改写成一句事实描述，再去核对。',
     insight: '敌意是嫉妒的长尾：不吵不闹，只是一直在运行。',
-    prompt: '有人让你当众下不来台，之后你就不太跟他说话了，但一直看他动态。', reverse: false },
+    prompt: '有人当众让你下不来台，你之后不再跟他说话，但会看他动态。', reverse: false },
 
   /* ───── 傲慢 superbia ───── */
   { id: 'sup1', axis: 'v_superbia', name: '炫耀邀功', latin: 'iactantia',
@@ -1028,7 +1028,7 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
     cost: '别人开始只听见你在说自己，听不见事。',
     practice: '下次做成一件事，把它写在纸上，不发给任何人。',
     insight: '邀功把成果换成注意力，而注意力是会掉价的。',
-    prompt: '事情做完，你把结果发出来就完了，不再补一句是谁做的。', reverse: true },
+    prompt: '项目上线，你把结果发群里就不再多说。', reverse: true },
 
   { id: 'sup2', axis: 'v_superbia', name: '双面作秀', latin: 'hypocrisis',
     def: '在人前表现得比实际更认同某些规矩。',
@@ -1036,7 +1036,7 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
     cost: '维持两套说法，比承认一次错更耗人。',
     practice: '挑一件你口头赞同却不做的事，要么做一次，要么不再提。',
     insight: '作秀不是演技问题，是你不相信别人会接受真实的你。',
-    prompt: '你对别人讲规矩，自己做事时会绕开两步。', reverse: false },
+    prompt: '你在会上说要按流程走，自己遇到麻烦就跳过去。', reverse: false },
 
   { id: 'sup3', axis: 'v_superbia', name: '争辩必胜', latin: 'contentio',
     def: '把对话当成输赢，而不是弄清楚。',
@@ -1044,7 +1044,7 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
     cost: '身边的人开始附和你，而不是跟你讨论。',
     practice: '争到一半时说一句「你可能是对的」，然后真的想一遍。',
     insight: '赢下对话的代价，是以后没人再愿意跟你对话。',
-    prompt: '讨论卡住的时候，你更想证明自己对，而不是弄清问题。', reverse: false },
+    prompt: '讨论卡住时，你只想证明自己对。', reverse: false },
 
   { id: 'sup4', axis: 'v_superbia', name: '拒谏固执', latin: 'pertinacia',
     def: '被指出问题时，先护住自己，再考虑事实。',
@@ -1052,7 +1052,7 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
     cost: '真话停在别人嘴边，你听得越来越少。',
     practice: '下一次只问一句：「具体是哪一步？」',
     insight: '固执的人听不到的好话，比听到的坏话更少。',
-    prompt: '别人说你哪里不对，你先解释，回头才想他说得对不对。', reverse: false },
+    prompt: '同事指出你的错误，你先解释，回头才想。', reverse: false },
 
   /* ───── 暴怒 ira ───── */
   { id: 'ira1', axis: 'v_ira', name: '一点就炸', latin: 'rixa',
@@ -1061,7 +1061,7 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
     cost: '你的日程里开始出现「不知道怎么坏的」下午。',
     practice: '爆发前，先说一句「等一下」，然后数到五。',
     insight: '炸点的直径通常很小，火药的年代很久。',
-    prompt: '被插队、被打断，你当场就过去了，不会带进下一件事。', reverse: true },
+    prompt: '被插队、被打断，你当场就过去了。', reverse: true },
 
   { id: 'ira2', axis: 'v_ira', name: '记仇伺机', latin: 'vindicta',
     def: '记住谁在什么时候让你难堪，并等一个合适的时机。',
@@ -1069,7 +1069,7 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
     cost: '你花了今天的时间，去还去年的账。',
     practice: '写下那件事，只写事实，写下后不发出去。',
     insight: '记仇是一种不肯承认受伤的方式。',
-    prompt: '谁在哪次会上让你下不来台，你记得清清楚楚。', reverse: false },
+    prompt: '谁在哪次会上让你难堪，你记得清清楚楚。', reverse: false },
 
   { id: 'ira3', axis: 'v_ira', name: '恶语伤人', latin: 'contumelia',
     def: '争吵升级时，挑最痛的地方说。',
@@ -1077,7 +1077,7 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
     cost: '话收不回来，关系里留一个永久的位置给那句话。',
     practice: '吵到最狠时，只说事实，不说评价，撑过这一轮。',
     insight: '伤人的话之所以准，是因为你太了解他。',
-    prompt: '吵到一半，那句最难听的话已经到嘴边了。', reverse: false },
+    prompt: '跟人吵到一半，最难听的那句已经到嘴边了。', reverse: false },
 
   { id: 'ira4', axis: 'v_ira', name: '怨天尤人', latin: 'indignatio',
     def: '事情不顺，先怪环境或别人。',
@@ -1085,7 +1085,7 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
     cost: '你把改变的按钮，交到了别人手里。',
     practice: '一次只认一个自己的环节，说完就停。',
     insight: '把责任推出去很快，但它同时推掉了你的能动性。',
-    prompt: '事情不顺，你先想到的是谁拖了后腿。', reverse: false },
+    prompt: '项目出问题，你先想到的是谁拖了后腿。', reverse: false },
 
   /* ───── 怠惰 acedia ───── */
   { id: 'ace1', axis: 'v_acedia', name: '拖延逃避', latin: 'torpor circa praecepta',
@@ -1094,7 +1094,7 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
     cost: '你在每一次「还没到时候」里，消耗一点对自己的信任。',
     practice: '把任务缩到五分钟，只做那五分钟。',
     insight: '拖延不是时间管理问题，是这件事牵动的那点不舒服。',
-    prompt: '该做的事，你一般在当天就开始，不留到夜里。', reverse: true },
+    prompt: '该做的事，你一般当天就开始了。', reverse: true },
 
   { id: 'ace2', axis: 'v_acedia', name: '心神游荡', latin: 'evagatio mentis',
     def: '一坐下，注意力就自己走开。',
@@ -1102,7 +1102,7 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
     cost: '你的一天被切碎，没有一件事被真正做完。',
     practice: '关掉消息，一次只开一个窗口，撑二十分钟。',
     insight: '走神是一种回避：哪里让你不舒服，注意力就从哪里溜走。',
-    prompt: '文档打开十分钟，你已经切了三次窗口。', reverse: false },
+    prompt: '写文档十分钟，你切去看了三次消息。', reverse: false },
 
   { id: 'ace3', axis: 'v_acedia', name: '灰心绝望', latin: 'desperatio',
     def: '一次失败，就断定这件事本身没戏。',
@@ -1110,7 +1110,7 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
     cost: '你把一次结果，写成了关于自己的结论。',
     practice: '把「我不行」改写成「这一次的方法是」，只改一句。',
     insight: '绝望来得太快，往往是为了省掉再试一次的力气。',
-    prompt: '被拒一次，你就断定这件事本身没戏。', reverse: false },
+    prompt: '面试被拒一次，你就觉得这行不适合自己。', reverse: false },
 
   { id: 'ace4', axis: 'v_acedia', name: '迁怒挑剔', latin: 'malitia',
     def: '不想做的时候，先嫌环境、嫌流程、嫌人。',
@@ -1127,7 +1127,7 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
     cost: '你把资源存住了，把关系花掉了。',
     practice: '今天主动请一次客，不看金额。',
     insight: '囤积换来的是安全感的样子，不是安全本身。',
-    prompt: '要出一笔钱的时候，你会在心里先算一遍划不划算。', reverse: false },
+    prompt: '要花钱的时候，你会在心里先算一遍。', reverse: false },
 
   { id: 'ava2', axis: 'v_avaritia', name: '取巧虚报', latin: 'fraus',
     def: '规则有空子时，觉得不用白不用。',
@@ -1135,7 +1135,7 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
     cost: '一次侥幸之后，你要一直记得自己说过什么。',
     practice: '挑一件可占的小便宜，这次不占。',
     insight: '占便宜的真正成本，是你开始需要一个关于自己的说法。',
-    prompt: '报销、考勤、福利的边上，你会试着多报一点。', reverse: false },
+    prompt: '公司报销，你会把私人的打车费也填进去。', reverse: false },
 
   { id: 'ava3', axis: 'v_avaritia', name: '越界攫取', latin: 'violentia',
     def: '机会有限时，先抢，再想影响。',
@@ -1143,7 +1143,7 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
     cost: '你赢下的东西，需要一个人替你承担代价。',
     practice: '下一次先说一句「这个我们怎么分」。',
     insight: '越界的人往往相信，世界只有这么多。',
-    prompt: '机会只有一个的时候，你会先占住，再谈怎么分。', reverse: false },
+    prompt: '名额只有一个的时候，你会先占住再谈怎么分。', reverse: false },
 
   { id: 'ava4', axis: 'v_avaritia', name: '永不满足', latin: 'inquietudo',
     def: '刚达成一个目标，立刻盯上更大的。',
@@ -1151,7 +1151,7 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
     cost: '你永远在下一格，很难在现在这一格待着。',
     practice: '把已经拥有的三件事写下来，今天不再加新的目标。',
     insight: '不满足不是野心，是一种停不下来的不安。',
-    prompt: '手上的钱够用之后，你就不太去找更多的了。', reverse: true },
+    prompt: '钱够用之后，你就不太去找更多的了。', reverse: true },
 
   /* ───── 暴食 gula ───── */
   { id: 'gul1', axis: 'v_gula', name: '无度过量', latin: 'nimis',
@@ -1168,7 +1168,7 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
     cost: '被盖住的情绪不会消失，只会沉下去，下次更难碰。',
     practice: '难受的时候先出门走十分钟，再决定吃什么。',
     insight: '麻醉的速度很快，快到你会忘了自己在麻醉什么。',
-    prompt: '心里堵着事的时候，你会出门走一圈，而不是找吃的。', reverse: true },
+    prompt: '心里堵得慌，你会出门走一圈。', reverse: true },
 
   { id: 'gul3', axis: 'v_gula', name: '失态多言', latin: 'multiloquium',
     def: '放松的场合里，话多、玩笑过头。',
@@ -1176,7 +1176,7 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
     cost: '你事后记不清自己说了什么，别人记得。',
     practice: '这一场少说三句，把话筒留出去。',
     insight: '失控的舌头，通常替一个不敢直说的人说话。',
-    prompt: '酒过三巡，你会把不该说的私事拿出来讲。', reverse: false },
+    prompt: '酒过三巡，你会把不该说的私事讲出来。', reverse: false },
 
   { id: 'gul4', axis: 'v_gula', name: '挑剔精致', latin: 'studiose',
     def: '为一顿合口味的，多花很多时间与钱。',
@@ -1184,7 +1184,7 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
     cost: '越来越难被满足，普通的一天变得没味道。',
     practice: '今天吃一顿不挑的，认真吃完。',
     insight: '精致是快感的通胀：阈值一路上涨，日常一路贬值。',
-    prompt: '为了一顿合口味，你愿意多走二十分钟。', reverse: false },
+    prompt: '为了一口合口味的，你愿意多走二十分钟。', reverse: false },
 
   /* ───── 色欲 luxuria ───── */
   { id: 'lux1', axis: 'v_luxuria', name: '冲动速食', latin: 'praecipitatio',
@@ -1193,7 +1193,7 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
     cost: '你把关系当成了快消品，也把自己当成了。',
     practice: '下一次想推进时，多等一周。',
     insight: '快，是为了避开评估；评估会让人慢下来，也可能让人走开。',
-    prompt: '认识没几天，你就想快点把关系往前推一步。', reverse: false },
+    prompt: '认识没几天，你就想把关系往前推一步。', reverse: false },
 
   { id: 'lux2', axis: 'v_luxuria', name: '感官沉溺', latin: 'amor saeculi',
     def: '深夜用擦边内容把时间填满。',
@@ -1209,7 +1209,7 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
     cost: '你很难真正投入，因为你一直开着后门。',
     practice: '今天关掉一个窗口，只看一个人。',
     insight: '留后门的人，通常不是不爱，是不敢只爱一个。',
-    prompt: '进入一段关系之后，你就不太注意别人了。', reverse: true },
+    prompt: '进入一段关系后，你就不太注意别人了。', reverse: true },
 
   { id: 'lux4', axis: 'v_luxuria', name: '物化他人', latin: 'amor sui',
     def: '只在需要的时候找一个人，别的时候不出现。',
@@ -1217,7 +1217,7 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
     cost: '你越来越难被一个人真正认识。',
     practice: '先问一句「你最近怎么样」，然后听完。',
     insight: '把人当工具，最后被孤立的也是自己。',
-    prompt: '需要安慰的时候你才找人，平时不太主动联系。', reverse: false },
+    prompt: '需要安慰时你才找人，平时不主动联系。', reverse: false },
 
   /* ───── 谦逊 humilitas ───── */
   { id: 'hum1', axis: 'p_humilitas', name: '如实自评', latin: 'humilitas',
@@ -1226,7 +1226,7 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
     cost: '如实有时会被误读成没底气，你要承受这一点。',
     practice: '今天说一次「这个我确实不擅长」，然后不解释。',
     insight: '谦逊不是压低，是不再管理别人对你的估值。',
-    prompt: '你会主动说出自己哪一块其实没做好。', reverse: false },
+    prompt: '被夸的时候，你能说清哪部分其实是别人做的。', reverse: false },
 
   { id: 'hum2', axis: 'p_humilitas', name: '可受教', latin: 'docilitas',
     def: '主动请人指出你的问题，并真的改。',
@@ -1234,7 +1234,7 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
     cost: '要先承认自己没看见，这一步不舒服。',
     practice: '找一个你尊重的人，请他挑一个毛病。',
     insight: '可受教是一种信息优势：你比固执的人多一条输入通道。',
-    prompt: '被比你年轻的人指出问题，你心里会不太舒服。', reverse: true },
+    prompt: '被比你年轻的人指出问题时，你会不服气。', reverse: true },
 
   { id: 'hum3', axis: 'p_humilitas', name: '不争位次', latin: 'modestia',
     def: '不抢功，不排名，不把话说满。',
@@ -1242,7 +1242,7 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
     cost: '有些机会确实会被别人拿走。',
     practice: '把一个露脸的机会让出去，不告诉对方是你让的。',
     insight: '不争位次的人，往往把力气花在了事上。',
-    prompt: '汇报的时候，你会点名为实际做事的人说一句。', reverse: false },
+    prompt: '汇报时，你会点名说这是谁做的。', reverse: false },
 
   /* ───── 善意 benignitas ───── */
   { id: 'ben1', axis: 'p_benignitas', name: '真心祝福', latin: 'caritas',
@@ -1251,7 +1251,7 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
     cost: '需要先承认自己暂时没有，这一步不容易。',
     practice: '今天真心夸一个人，说具体哪件事。',
     insight: '为别人的好高兴，是最省力的嫉妒解药。',
-    prompt: '别人过得更好的消息，你听了会有点不舒服。', reverse: true },
+    prompt: '别人过得更好，你听着有点不舒服。', reverse: true },
 
   { id: 'ben2', axis: 'p_benignitas', name: '当面直说', latin: 'affabilitas',
     def: '有意见直接找当事人，不在别处讲。',
@@ -1259,7 +1259,7 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
     cost: '当面说有时会难看，你要担着。',
     practice: '挑一件忍了很久的小事，当面说掉。',
     insight: '背后的话会绕回来，当面的不会。',
-    prompt: '对人有意见，你会当面找他讲清楚。', reverse: false },
+    prompt: '对人有意见，你会当面跟他讲。', reverse: false },
 
   { id: 'ben3', axis: 'p_benignitas', name: '感恩回报', latin: 'gratia',
     def: '记得别人帮过你，并找机会还。',
@@ -1267,7 +1267,7 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
     cost: '要花时间和注意力，而不能只是心里想着。',
     practice: '给一个帮过你的人发一条具体的道谢。',
     insight: '感恩把一次帮助变成一段关系。',
-    prompt: '别人在你最难的时候搭过手，你后来专门谢过一次。', reverse: false },
+    prompt: '帮过你的人，你后来专门谢过一次。', reverse: false },
 
   /* ───── 忍耐 patientia ───── */
   { id: 'pat1', axis: 'p_patientia', name: '承受不退', latin: 'patientia',
@@ -1276,7 +1276,7 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
     cost: '要忍受一段没有结果的时间。',
     practice: '下一次被否，先只问一个问题，再回去改。',
     insight: '承受不是硬撑，是把情绪和事情分开处理。',
-    prompt: '别人指出方案的问题，你会当天改完再发一版。', reverse: false },
+    prompt: '别人指出方案的问题，你当天改完再发一版。', reverse: false },
 
   { id: 'pat2', axis: 'p_patientia', name: '不被激怒', latin: 'mansuetudo',
     def: '被指责时，先弄清楚再回应。',
@@ -1284,7 +1284,7 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
     cost: '当下那口气要自己咽，没人看见。',
     practice: '被批评时，先重复一遍对方的意思，再说话。',
     insight: '不激怒不是没有火，是不让火替你做决定。',
-    prompt: '被当众指出问题的时候，你的脸色会先变。', reverse: true },
+    prompt: '被当众指出问题时，你的脸色会变。', reverse: true },
 
   { id: 'pat3', axis: 'p_patientia', name: '长程耐心', latin: 'longanimitas',
     def: '需要几个月才见效的事，你还能做下去。',
@@ -1292,7 +1292,7 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
     cost: '长期没有回报的时段，只能自己扛。',
     practice: '选一件慢事，连续做七天，不评估结果。',
     insight: '长忍是少数能被时间奖励的品质。',
-    prompt: '需要几个月才见效的事，你能一直做下去。', reverse: false },
+    prompt: '要几个月才见效的事，你能一直做下去。', reverse: false },
 
   /* ───── 勤勉 industria ───── */
   { id: 'dil1', axis: 'p_industria', name: '及时启动', latin: 'solicitudo',
@@ -1301,7 +1301,7 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
     cost: '要放下手头正在享受的东西。',
     practice: '现在挑一件拖了两天的小事，做第一分钟。',
     insight: '启动的成本比完成高，所以先动一下就够了。',
-    prompt: '想到要做的事，你会在当天动第一下。', reverse: false },
+    prompt: '想到要做的事，你当天就动第一下。', reverse: false },
 
   { id: 'dil2', axis: 'p_industria', name: '专注屏蔽', latin: 'studiositas',
     def: '一次只做一件，把噪音关掉。',
@@ -1326,7 +1326,7 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
     cost: '给出的不会回来，这是它的一部分。',
     practice: '今天给出一件小的东西，不求回。',
     insight: '慷慨练的是对「够用」的信任。',
-    prompt: '手上有余的时候，你更愿意先存着，不太想到别人。', reverse: true },
+    prompt: '手上有余的时候，你更愿意先存着。', reverse: true },
 
   { id: 'lib2', axis: 'p_liberalitas', name: '让出机会', latin: 'gratia',
     def: '把露脸与好处让给更合适的人。',
@@ -1342,7 +1342,7 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
     cost: '要付出时间，有时还要付出钱。',
     practice: '找一个明显很累的人，替他做一件具体的事。',
     insight: '怜悯是唯一不需要对方开口的善意。',
-    prompt: '有人明显撑不住，你会实际帮一把，不只是安慰。', reverse: false },
+    prompt: '有人明显撑不住，你会实际帮一把。', reverse: false },
 
   /* ───── 节制 temperantia ───── */
   { id: 'tem1', axis: 'p_temperantia', name: '食饮有度', latin: 'abstinentia',
@@ -1384,7 +1384,7 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
     cost: '关掉的可能性不会再打开。',
     practice: '清掉一个你留着当备胎的联系方式。',
     insight: '专一不是没有诱惑，是不给诱惑留入口。',
-    prompt: '进入一段关系后，你会主动关掉一些窗口。', reverse: false },
+    prompt: '谈恋爱之后，你会主动断掉几个暧昧的联系。', reverse: false },
 
   { id: 'cas3', axis: 'p_castitas', name: '节制刺激', latin: 'continentia',
     def: '管理自己接触的刺激内容，而不是硬顶。',
@@ -1406,92 +1406,92 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
 (self.SF = self.SF || {}).FACET_EXTRA = {
   /* ── 嫉妒 invidia ── */
   inv1: {
-    strength: '说到他的成绩，你能听见自己的语气往下压。', strengthRev: false,
-    costQ: '别人做得好，你说起他时不用补一句「不过」。', costRev: true
+    strength: '说到他的成绩，你的语气会往下压。', strengthRev: false,
+    costQ: '有人听你说完，后来不再跟你聊工作的事。', costRev: true
   },
   inv2: {
-    strength: '听说他倒霉，你听完就过去了，心里没什么起伏。', strengthRev: true,
-    costQ: '你花在看他动态上的时间，比花在自己事情上还多。', costRev: false
+    strength: '听说他倒霉，你心里没什么起伏。', strengthRev: true,
+    costQ: '你专门去翻过他的近况，想看看有没有更糟。', costRev: false
   },
   inv3: {
-    strength: '刷到同学的近况，你的手指会停一下，然后开始算差距。', strengthRev: false,
-    costQ: '一次见面之后，你比见之前更累。', costRev: false
+    strength: '刷到同学买房，你开始算自己差多少。', strengthRev: false,
+    costQ: '你和朋友见完面，回家躺着不想说话。', costRev: false
   },
   inv4: {
-    strength: '那件让你难堪的事，你后来提起来能当笑话讲。', strengthRev: true,
-    costQ: '你因为那件事，错过了一次本可以合作的机会。', costRev: false
+    strength: '当众下不来台的那次，你现在想起还能笑。', strengthRev: true,
+    costQ: '有个能合作的项目，你没去找他。', costRev: false
   },
 
   /* ── 傲慢 superbia ── */
   sup1: {
-    strength: '汇报结尾，你会想办法让领导知道关键那一步是你做的。', strengthRev: false,
-    costQ: '同一件事，别人记住的是团队，不是你。', costRev: false
+    strength: '汇报结尾，你想办法让领导知道关键那步是你做的。', strengthRev: false,
+    costQ: '有同事当面夸你，转身却躲着你。', costRev: false
   },
   sup2: {
-    strength: '你在上司面前和同事面前，说的是同一套话。', strengthRev: true,
-    costQ: '你得记着自己上次是怎么说的。', costRev: false
+    strength: '你在领导和同事面前，说的是同一套话。', strengthRev: true,
+    costQ: '你记着自己上次是怎么说的，怕说漏。', costRev: false
   },
   sup3: {
-    strength: '被反驳时，你的语速快起来，手心开始发潮。', strengthRev: false,
-    costQ: '争完之后，你会先想想对方哪句其实有道理。', costRev: true
+    strength: '被反驳时，你语速变快，手心发潮。', strengthRev: false,
+    costQ: '争完之后，你会回头想对方哪句有道理。', costRev: true
   },
   sup4: {
-    strength: '方案被人改了两处，你会先看改得对不对，再决定说不说。', strengthRev: true,
-    costQ: '你已经想不起来上一次被别人说服是什么时候。', costRev: false
+    strength: '方案被人改了两处，你会先看改得对不对。', strengthRev: true,
+    costQ: '你很久没被别人说服过了。', costRev: false
   },
 
   /* ── 暴怒 ira ── */
   ira1: {
-    strength: '被插队的那几秒，你能感觉血往头上冲。', strengthRev: false,
+    strength: '被插队的那几秒，血往你头上冲。', strengthRev: false,
     costQ: '你因为一次发火，跟人道过歉。', costRev: false
   },
   ira2: {
-    strength: '那件事过去之后，你就真的没再想过。', strengthRev: true,
-    costQ: '你拒绝帮过一个曾经让你难堪的人。', costRev: false
+    strength: '当着人面被说的那一次，你后来没再想起过。', strengthRev: true,
+    costQ: '有人请你帮忙，你因为旧事没答应。', costRev: false
   },
   ira3: {
     strength: '你能感觉到自己在挑最疼的地方说。', strengthRev: false,
-    costQ: '吵完之后，你会先想自己哪句话过了。', costRev: true
+    costQ: '你为吵出来的话，道过歉。', costRev: true
   },
   ira4: {
-    strength: '出了问题，你会先想自己哪一步可以改。', strengthRev: true,
-    costQ: '身边人开始不太跟你说实话。', costRev: false
+    strength: '项目出问题，你会先想自己哪一步能改。', strengthRev: true,
+    costQ: '项目出问题，你找过替罪的人。', costRev: false
   },
 
   /* ── 怠惰 acedia ── */
   ace1: {
-    strength: '打开那个文档的瞬间，你会想先去倒杯水。', strengthRev: false,
-    costQ: '你已经错过过一次说好的时间。', costRev: false
+    strength: '打开那个文档，你想先去倒杯水。', strengthRev: false,
+    costQ: '你有过答应了交付时间却没交出来。', costRev: false
   },
   ace2: {
-    strength: '坐下来之后，你能连着盯二十分钟不碰手机。', strengthRev: true,
-    costQ: '一天结束，你说不出自己真正做完了什么。', costRev: false
+    strength: '坐下来之后，你能连着二十分钟不碰手机。', strengthRev: true,
+    costQ: '一天下来，你说不出自己做了什么。', costRev: false
   },
   ace3: {
     strength: '收到「不合适」三个字，你整个人往下沉。', strengthRev: false,
-    costQ: '项目黄了之后，你还惦记着里面有意思的那部分。', costRev: true
+    costQ: '项目黄了，你还惦记着里面有意思的那部分。', costRev: true
   },
   ace4: {
-    strength: '卡住的时候，你会先问自己到底卡在哪。', strengthRev: true,
+    strength: '卡住的时候，你会先问自己卡在哪。', strengthRev: true,
     costQ: '有人说过你最近很难合作。', costRev: false
   },
 
   /* ── 贪婪 avaritia ── */
   ava1: {
-    strength: '付款那一下，你会有一点点不舍。', strengthRev: false,
-    costQ: '朋友聚会 AA，多出几十块你从来没提过。', costRev: true
+    strength: '付款那一下，你有点不舍。', strengthRev: false,
+    costQ: '朋友聚餐 AA，多出几十块你从没提过。', costRev: true
   },
   ava2: {
-    strength: '该报多少你报多少，不会多写一行。', strengthRev: true,
-    costQ: '你会担心某笔账将来被翻出来。', costRev: false
+    strength: '报销时你只填真花掉的钱。', strengthRev: true,
+    costQ: '你有过一笔账怕被翻出来的经历。', costRev: false
   },
   ava3: {
-    strength: '机会只剩一个的时候，你不太会去挤。', strengthRev: true,
+    strength: '资源紧张时，你不太会去挤。', strengthRev: true,
     costQ: '有合作过的人，后来不再找你。', costRev: false
   },
   ava4: {
-    strength: '加薪通知下来，你当晚就在看别的机会。', strengthRev: false,
-    costQ: '你已经很久没有因为一件事高兴超过一天。', costRev: false
+    strength: '加薪通知下来，你当晚在看别的机会。', strengthRev: false,
+    costQ: '你很久没因为一件事高兴超过一天。', costRev: false
   },
 
   /* ── 暴食 gula ── */
@@ -1500,7 +1500,7 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
     costQ: '吃撑之后，你很少为那一顿后悔。', costRev: true
   },
   gul2: {
-    strength: '情绪掉下去的第一件事，是打开外卖软件。', strengthRev: false,
+    strength: '情绪掉下去，你第一件事是打开外卖软件。', strengthRev: false,
     costQ: '你难受的那几天，体重和睡眠都没怎么变。', costRev: true
   },
   gul3: {
@@ -1508,22 +1508,22 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
     costQ: '第二天你会想起自己说多了。', costRev: false
   },
   gul4: {
-    strength: '口味不对的那一口，你会明显皱一下眉。', strengthRev: false,
-    costQ: '你在吃这件事上花掉的，比大多数人多。', costRev: false
+    strength: '味道不对的那一口，你会皱一下眉。', strengthRev: false,
+    costQ: '你有过为一家店跑半个城的经历。', costRev: false
   },
 
   /* ── 色欲 luxuria ── */
   lux1: {
-    strength: '心跳快起来的时候，你先行动，后想后果。', strengthRev: false,
+    strength: '心跳快起来时，你先行动，后想后果。', strengthRev: false,
     costQ: '你几乎没有为一次冲动付过代价。', costRev: true
   },
   lux2: {
     strength: '睡前你会把手机放到够不着的地方。', strengthRev: true,
-    costQ: '你的睡眠时间，常常被这件事吃掉一两个小时。', costRev: false
+    costQ: '你刷到很晚，第二天睡不够。', costRev: false
   },
   lux3: {
-    strength: '身边出现新的人，你的注意力会自己飘过去。', strengthRev: false,
-    costQ: '在一段关系里，你很难说自己完全在场。', costRev: false
+    strength: '身边出现新的人，你的注意力会飘过去。', strengthRev: false,
+    costQ: '和对方吃饭时，你常在想别人。', costRev: false
   },
   lux4: {
     strength: '你会记得对方最近在忙什么。', strengthRev: true,
@@ -1532,100 +1532,100 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
 
   /* ── 谦逊 humilitas ── */
   hum1: {
-    strength: '被夸得太高，你会主动把话拉回事实。', strengthRev: false,
-    costQ: '该你拿的机会，你会直接开口。', costRev: true
+    strength: '被夸得太高，你会把话拉回事实。', strengthRev: false,
+    costQ: '你主动要过一次本该属于你的露脸机会。', costRev: true
   },
   hum2: {
-    strength: '做完一件事，你会主动问一句：哪里还能改。', strengthRev: false,
-    costQ: '别人提过的事，你后来真的改了几条。', costRev: false
+    strength: '做完一件事，你会主动问一句「哪里还能改」。', strengthRev: false,
+    costQ: '别人提过的问题，你后来改过。', costRev: false
   },
   hum3: {
-    strength: '有机会露脸时，你会想争一争。', strengthRev: true,
-    costQ: '那份功劳，后来没人知道是你做的。', costRev: false
+    strength: '有露脸的机会，你会想争一争。', strengthRev: true,
+    costQ: '你把自己的名字从一份功劳里划掉过。', costRev: false
   },
 
   /* ── 善意 benignitas ── */
   ben1: {
-    strength: '他升职那天，你回了句恭喜，后面没再问。', strengthRev: false,
-    costQ: '有人说过，跟你分享好消息很舒服。', costRev: false
+    strength: '他报喜的时候，你笑得有点勉强。', strengthRev: false,
+    costQ: '朋友有好事，专门跑来告诉过你。', costRev: false
   },
   ben2: {
-    strength: '对人有意见，你会先在别的群里说两句。', strengthRev: true,
-    costQ: '因为一句传出去的话，你道过歉。', costRev: false
+    strength: '有人让你不痛快，你会先跟旁人讲。', strengthRev: true,
+    costQ: '你因为一句传出去的话，道过歉。', costRev: false
   },
   ben3: {
-    strength: '逢年过节，你会给帮过你的人发一条消息。', strengthRev: false,
-    costQ: '帮过你的人，你大多记不太清了。', costRev: true
+    strength: '你记得谁在你最难的时候出现过。', strengthRev: false,
+    costQ: '你想不起是谁帮过你。', costRev: true
   },
 
   /* ── 忍耐 patientia ── */
   pat1: {
-    strength: '被否掉的那一刻，你会先深吸一口气。', strengthRev: false,
-    costQ: '被否掉之后，你很难再把它捡起来。', costRev: true
+    strength: '方案被否的那一下，你会先深吸一口气。', strengthRev: false,
+    costQ: '被否掉的方案，你后来还翻出来看过。', costRev: true
   },
   pat2: {
-    strength: '被误会的时候，你能等对方把话说完。', strengthRev: false,
-    costQ: '事后你没有为那句话反复难受。', costRev: false
+    strength: '被点名的时候，你会先问「具体指哪件事」。', strengthRev: false,
+    costQ: '你为那句话，私下跟人抱怨过。', costRev: false
   },
   pat3: {
-    strength: '一件事三周没有反馈，你就会换方向。', strengthRev: true,
+    strength: '一件事三周没反馈，你会换方向。', strengthRev: true,
     costQ: '有一件事，你已经做了三年以上。', costRev: false
   },
 
   /* ── 勤勉 industria ── */
   dil1: {
-    strength: '收到一件小事的提醒，你会在两分钟内开始。', strengthRev: false,
-    costQ: '你手上很少压着三件以上没动的事。', costRev: false
+    strength: '收到提醒，你两分钟内就开始。', strengthRev: false,
+    costQ: '你有过把当天的清单全部划掉的经历。', costRev: false
   },
   dil2: {
-    strength: '你会给自己划出一段不被打扰的时间。', strengthRev: false,
-    costQ: '你经常一件事做到一半就切走了。', costRev: true
+    strength: '做事的时候，你会把消息通知全关掉。', strengthRev: false,
+    costQ: '你一件事做到一半就切走过。', costRev: true
   },
   dil3: {
     strength: '你开的事，很多最后没有做完。', strengthRev: true,
-    costQ: '你桌面上没有堆着三个月没动的文件。', costRev: false
+    costQ: '你有过提前交付的时候。', costRev: false
   },
 
   /* ── 慷慨 liberalitas ── */
   lib1: {
-    strength: '别人开口之前，你会先问一句需不需要。', strengthRev: false,
-    costQ: '你给出的东西，很少想着要回来。', costRev: false
+    strength: '有余的时候，你会先想到谁可能需要。', strengthRev: false,
+    costQ: '给出去的东西，你后来没要回来过。', costRev: false
   },
   lib2: {
-    strength: '推荐别人去之后，你不再回头想这件事。', strengthRev: false,
-    costQ: '让出去的机会，你后来有点后悔。', costRev: true
+    strength: '推荐别人去之后，你不再回头想。', strengthRev: false,
+    costQ: '让出去的机会，你后来后悔过。', costRev: true
   },
   lib3: {
-    strength: '别人家里出事，你会主动问一句要不要搭手。', strengthRev: true,
-    costQ: '你帮过的人里，有几个后来成了朋友。', costRev: false
+    strength: '邻居搬家，你会主动去帮一把。', strengthRev: true,
+    costQ: '有人在你帮过之后，跟你成了朋友。', costRev: false
   },
 
   /* ── 节制 temperantia ── */
   tem1: {
     strength: '别人劝酒的时候，你能只喝半杯。', strengthRev: false,
-    costQ: '你常常第二天早上为昨晚后悔。', costRev: true
+    costQ: '你第二天为昨晚后悔过。', costRev: true
   },
   tem2: {
     strength: '话到嘴边，你很少停下来换一句。', strengthRev: true,
-    costQ: '你没有因为一句话让场面冷下来过。', costRev: false
+    costQ: '你有过憋住一句话没说的经历。', costRev: false
   },
   tem3: {
     strength: '玩到一半，你会看一眼时间再决定。', strengthRev: false,
-    costQ: '你很少因为玩得太晚而后悔。', costRev: false
+    costQ: '你有过玩到一半主动收手的经历。', costRev: false
   },
 
   /* ── 贞洁 castitas ── */
   cas1: {
     strength: '面对有伴侣的人，你会主动退开半步。', strengthRev: false,
-    costQ: '你没有需要删掉的聊天记录。', costRev: false
+    costQ: '你有过主动删掉一段暧昧对话。', costRev: false
   },
   cas2: {
     strength: '有人示好，你会把话说明白。', strengthRev: false,
-    costQ: '有人问起你的关系，你会说得含糊。', costRev: true
+    costQ: '有人半夜发来消息，你没有删掉。', costRev: true
   },
   cas3: {
     strength: '手机放在床头，你半夜会拿起来。', strengthRev: true,
-    costQ: '深夜那两三个小时，常常就这么没了。', costRev: false
+    costQ: '你有过卸了又装回来的经历。', costRev: false
   }
 };
 
@@ -2592,7 +2592,11 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
   var SF = self.SF;
   var ORDERS = { simple: SF.buildOrder('simple'), deep: SF.buildOrder('deep') };
   var LIMITS = SF.LIMITS;
-  var SCALE = ['完全不像我', '不太像', '说不好', '有点像', '非常像我'];
+  var SCALES = {
+    freq: { legend: '这种事多久发生一次', labels: ['从没', '一两次', '有时', '经常', '几乎总是'] },
+    str: { legend: '当时的反应有多强', labels: ['完全没有', '很轻', '一般', '明显', '很强烈'] },
+    cost: { legend: '这件事发生过几次', labels: ['没有', '有过一次', '有过几次', '反复发生', '一直在发生'] }
+  };
   var ACTS = {
     simple: [
       { at: 0, label: 'Ⅰ · 一 · 本能' },
@@ -2908,11 +2912,13 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
           }).join('')
         + '</fieldset>';
     } else {
+      var scaleKey = item.rev ? 'freq' : (item.dim || 'freq');
+      var scale = SCALES[scaleKey] || SCALES.freq;
       body = ''
         + '<p class="qKicker">' + (item.dim === 'freq' ? '自画像' : item.dim === 'str' ? '反应' : '后果') + ' · ' + String(idx + 1).padStart(2, '0') + '</p>'
         + '<h2 class="qText">' + esc(item.text) + '</h2>'
-        + '<fieldset class="opts optsScale"><legend class="sr">像不像你</legend>'
-        + SCALE.map(function (label, i) {
+        + '<fieldset class="opts optsScale"><legend class="sr">' + scale.legend + '</legend>'
+        + scale.labels.map(function (label, i) {
             return '<label class="opt' + (answered === i ? ' on' : '') + '">'
               + '<input type="radio" name="ans" value="' + i + '"' + (answered === i ? ' checked' : '') + '>'
               + '<span class="optKey">' + (i + 1) + '</span><span class="optBody">' + label + '</span></label>';
