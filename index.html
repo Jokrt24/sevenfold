@@ -227,6 +227,11 @@ ul, ol { padding: 0; list-style: none; }
   content: ''; position: absolute; left: 0; top: 18px; bottom: 18px; width: 1px;
   background: var(--gold); opacity: 0; transition: opacity .3s;
 }
+.pathReset {
+  margin-top: 2px; font-size: 11.5px; letter-spacing: .14em; color: var(--ink3);
+  border-bottom: 1px solid transparent; width: fit-content;
+}
+.pathReset:hover, .pathReset:focus-visible { color: var(--gold); border-bottom-color: var(--goldDim); }
 .pathDeep::before { background: var(--blood); }
 .path:hover .pathTitle, .path:focus-visible .pathTitle { color: var(--gold); }
 .pathDeep:hover .pathTitle, .pathDeep:focus-visible .pathTitle { color: var(--blood); }
@@ -285,6 +290,46 @@ ul, ol { padding: 0; list-style: none; }
 .barAct { color: var(--ink2); letter-spacing: .3em; }
 .barCount { font-family: var(--num); font-size: 15px; letter-spacing: .12em; color: var(--ink2); }
 .barCount i { font-style: normal; color: var(--ink3); font-size: 12px; }
+button.barCount { border-bottom: 1px solid transparent; padding: 2px 0; transition: color .3s, border-color .3s; }
+button.barCount:hover, button.barCount:focus-visible, button.barCount[aria-expanded="true"] { color: var(--gold); border-bottom-color: var(--goldDim); }
+
+/* 题目索引 */
+.qmap {
+  position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 20;
+  width: min(560px, calc(100vw - 40px)); max-height: 72vh; display: flex; flex-direction: column;
+  background: rgba(9,9,12,.985); border: 1px solid var(--line);
+  box-shadow: 0 30px 90px rgba(0,0,0,.7);
+}
+.qmap[hidden] { display: none; }
+.qmapHead { display: flex; align-items: center; justify-content: space-between; padding: 16px 18px 12px; font-size: 12px; letter-spacing: .16em; color: var(--ink3); }
+.qmapClose { font-size: 13px; color: var(--ink3); padding: 2px 6px; }
+.qmapClose:hover { color: var(--ink); }
+.qmapGrid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 6px; padding: 4px 18px 14px; overflow-y: auto; }
+.qmapCell {
+  height: 32px; font-family: var(--num); font-size: 13px; color: var(--ink3);
+  border: 1px solid transparent; transition: color .2s, border-color .2s, background-color .2s;
+}
+.qmapCell:hover { color: var(--ink); border-color: var(--line); }
+.qmapCell.done { color: var(--gold); }
+.qmapCell.cur { border-color: var(--gold); color: var(--ink); }
+.qmapFoot { display: flex; gap: 12px; padding: 12px 18px 18px; border-top: 1px solid var(--line2); }
+.qmapAct { font-size: 12px; letter-spacing: .12em; color: var(--ink2); border: 1px solid var(--line2); padding: 8px 14px; }
+.qmapAct:hover:not(:disabled) { color: var(--gold); border-color: var(--goldDim); }
+.qmapAct:disabled { opacity: .35; }
+.qmapAct.is-danger:hover { color: var(--blood); border-color: var(--blood); }
+
+/* 续答提示 */
+.resumeHint {
+  position: fixed; left: 50%; top: 18px; transform: translateX(-50%); z-index: 18;
+  padding: 8px 16px; font-size: 12px; letter-spacing: .14em; color: var(--ink);
+  background: rgba(12,12,15,.94); border: 1px solid var(--goldDim);
+  animation: hintIn .4s var(--ease) both;
+}
+@keyframes hintIn { from { opacity: 0; transform: translate(-50%, -6px); } to { opacity: 1; transform: translate(-50%, 0); } }
+@media (max-width: 560px) {
+  .qmap { top: auto; bottom: 0; transform: translateX(-50%); width: 100vw; max-height: 64vh; border-left: 0; border-right: 0; border-bottom: 0; }
+  .qmapGrid { grid-template-columns: repeat(6, 1fr); }
+}
 .progress { height: 1px; background: var(--line2); position: relative; }
 .progress i { display: block; height: 1px; background: var(--gold); opacity: .75; transition: width .45s var(--ease); }
 
@@ -2620,6 +2665,10 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
   var state = { mode: 'simple', answers: {}, index: 0, name: '', loaded: false };
   var currentName = '';
   var advanceTimer = null;
+  var pendingPick = null;
+  var qmapOpen = false;
+  var clearArmTimer = null;
+  var resumeHint = 0;
 
   function order() { return ORDERS[state.mode] || ORDERS.simple; }
   function total() { return order().length; }
@@ -2787,6 +2836,8 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
     }
     if (r.view === 'test') {
       state.mode = r.mode === 'deep' ? 'deep' : 'simple';
+      /* 带着进度重新进入时，提示一次「从第 N 题继续」 */
+      if (answeredCount() > 0 && state.index > 0) resumeHint = state.index + 1;
       return renderTest();
     }
     if (r.view === 'demo') {
@@ -2864,12 +2915,14 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
       + '        <span class="pathTitle">五十六个判断</span>'
       + '        <span class="pathMeta">约七分钟 · 十四轴的轮廓 · ' + (resumeLabel('simple') || '主导之罪的四种形态') + '</span>'
       + '        <span class="pathGo">开始 →</span>'
+      + '        ' + (resumeLabel('simple') ? '<span class="pathReset" data-reset="simple">从头开始</span>' : '')
       + '      </a>'
       + '      <a class="path pathDeep" href="#/test/deep">'
       + '        <span class="pathKicker">深度探索</span>'
       + '        <span class="pathTitle">一百六十一个判断</span>'
       + '        <span class="pathMeta">约十八分钟 · 每个面测频率、强度与代价 · ' + (resumeLabel('deep') || '十四个轴全量展开') + '</span>'
       + '        <span class="pathGo">进入深处 →</span>'
+      + '        ' + (resumeLabel('deep') ? '<span class="pathReset" data-reset="deep">从头开始</span>' : '')
       + '      </a>'
       + '    </div>'
       + '    <div class="homeActions">'
@@ -2931,7 +2984,8 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
       + '  <header class="bar">'
       + '    <a class="barBack" href="#/home" aria-label="回到开头">←</a>'
       + '    <span class="barAct">' + act.label + '</span>'
-      + '    <span class="barCount">' + String(idx + 1).padStart(2, '0') + ' <i>/ ' + TOTAL + '</i></span>'
+      + '    <button class="barCount" type="button" data-qmap aria-expanded="false" aria-controls="qmap" title="题目索引">'
+      + String(idx + 1).padStart(2, '0') + ' <i>/ ' + TOTAL + '</i></button>'
       + '  </header>'
       + '  <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="' + TOTAL + '" aria-valuenow="' + (idx) + '"><i style="width:' + (idx / TOTAL * 100).toFixed(2) + '%"></i></div>'
       + '  <div class="qWrap">' + body + '</div>'
@@ -2939,7 +2993,17 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
       + '    <button class="btnGhost" type="button" data-back' + (idx === 0 ? ' disabled' : '') + '>上一题</button>'
       + '    <span class="hint">' + (item.kind === 'scenario' ? '按 A–D 选择' : '按 1–5 作答') + '</span>'
       + '  </footer>'
+      + qmapHTML(idx)
       + '</section>';
+
+    if (resumeHint) {
+      var hint = document.createElement('div');
+      hint.className = 'resumeHint';
+      hint.textContent = '从第 ' + resumeHint + ' 题继续';
+      app.appendChild(hint);
+      setTimeout(function () { hint.remove(); }, 2600);
+      resumeHint = 0;
+    }
 
     app.setAttribute('data-view', 'test');
     var actHere = actsOf().filter(function (a) { return a.at === idx; })[0];
@@ -2958,7 +3022,12 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
   function choose(value) {
     var item = order()[state.index];
     if (!item) return;
-    if (advanceTimer) { clearTimeout(advanceTimer); advanceTimer = null; }
+    if (advanceTimer) {
+      // 同一题同一选项重复到达（点击 + change 同时触发）只算一次
+      if (pendingPick && pendingPick.idx === state.index && pendingPick.val === value) return;
+      clearTimeout(advanceTimer);
+      advanceTimer = null;
+    }
     state.answers[item.id] = value;
     save();
     var labels = app.querySelectorAll('.opt');
@@ -2970,8 +3039,10 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
     }
     var next = state.index + 1;
     var TOTAL = total();
+    pendingPick = { idx: state.index, val: value };
     advanceTimer = setTimeout(function () {
       advanceTimer = null;
+      pendingPick = null;
       if (next >= TOTAL) {
         finish();
       } else {
@@ -2985,12 +3056,95 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
 
   function back() {
     if (state.index === 0) return;
+    if (advanceTimer) { clearTimeout(advanceTimer); advanceTimer = null; pendingPick = null; }
     state.index -= 1;
     save();
     renderTest();
   }
 
+  /* ── 题目索引 ── */
+  function answeredAt(i) {
+    var it = order()[i];
+    return it && typeof state.answers[it.id] === 'number';
+  }
+
+  function firstUnanswered() {
+    var list = order();
+    for (var i = 0; i < list.length; i++) {
+      if (typeof state.answers[list[i].id] !== 'number') return i;
+    }
+    return -1;
+  }
+
+  function qmapHTML(cur) {
+    var list = order();
+    var cells = list.map(function (it, i) {
+      var done = typeof state.answers[it.id] === 'number';
+      var cls = 'qmapCell' + (done ? ' done' : '') + (i === cur ? ' cur' : '');
+      return '<button class="' + cls + '" type="button" data-q="' + (i + 1) + '"'
+        + (i === cur ? ' aria-current="true"' : '') + '>' + (i + 1) + '</button>';
+    }).join('');
+    var done = list.filter(function (it) { return typeof state.answers[it.id] === 'number'; }).length;
+    return '<div class="qmap" id="qmap" role="dialog" aria-modal="false" aria-label="题目索引" hidden>'
+      + '<div class="qmapHead"><span>已答 ' + done + ' / ' + list.length + '</span>'
+      + '<button class="qmapClose" type="button" data-qmap-close aria-label="关闭">✕</button></div>'
+      + '<div class="qmapGrid">' + cells + '</div>'
+      + '<div class="qmapFoot">'
+      + '<button class="qmapAct" type="button" data-q="1"' + (cur === 0 ? ' disabled' : '') + '>回到第一题</button>'
+      + '<button class="qmapAct is-danger" type="button" data-qmap-clear>清空重答</button>'
+      + '</div>'
+      + '</div>';
+  }
+
+  function openQmap(open) {
+    var p = document.getElementById('qmap');
+    var btn = app.querySelector('[data-qmap]');
+    if (!p) return;
+    qmapOpen = !!open;
+    p.hidden = !qmapOpen;
+    if (btn) btn.setAttribute('aria-expanded', qmapOpen ? 'true' : 'false');
+    if (qmapOpen) {
+      var cur = p.querySelector('.qmapCell.cur') || p.querySelector('.qmapCell');
+      if (cur) try { cur.focus({ preventScroll: true }); } catch (e) {}
+    } else if (btn) {
+      try { btn.focus({ preventScroll: true }); } catch (e) {}
+    }
+  }
+
+  function closeQmap() { if (qmapOpen) openQmap(false); }
+
+  function jump(n) {
+    var list = order();
+    var i = Math.max(0, Math.min(list.length - 1, n - 1));
+    if (advanceTimer) { clearTimeout(advanceTimer); advanceTimer = null; pendingPick = null; }
+    state.index = i;
+    save();
+    closeQmap();
+    location.hash = '#/test' + (state.mode === 'deep' ? '/deep' : '');
+    renderTest();
+  }
+
+  function clearAnswers() {
+    state.answers = {};
+    state.index = 0;
+    save();
+    closeQmap();
+    renderTest();
+    toast('已清空，从第一题开始');
+  }
+
   function finish() {
+    /* 还有没答的题就不出结果，跳到第一道空着的 */
+    var miss = firstUnanswered();
+    if (miss >= 0) {
+      var left = order().filter(function (it) { return typeof state.answers[it.id] !== 'number'; }).length;
+      state.index = miss;
+      save();
+      location.hash = '#/test' + (state.mode === 'deep' ? '/deep' : '');
+      renderTest();
+      toast('还有 ' + left + ' 题没答');
+      return;
+    }
     var payload = SF.codec.encode(state.answers, state.mode);
     try { localStorage.setItem(STORE + '.last', payload); } catch (e) { /* 忽略 */ }
     location.hash = '#/r/' + payload + (state.name ? '&n=' + SF.codec.encodeName(state.name) : '');
@@ -3620,6 +3774,62 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
 
   /* ───────── 事件 ───────── */
   app.addEventListener('click', function (e) {
+    var t = e.target;
+    var reset = t.closest && t.closest('[data-reset]');
+    if (reset) {
+      e.preventDefault();
+      var mode = reset.getAttribute('data-reset');
+      state.mode = mode === 'deep' ? 'deep' : 'simple';
+      state.answers = {};
+      state.index = 0;
+      save();
+      location.hash = '#/test' + (state.mode === 'deep' ? '/deep' : '');
+      return;
+    }
+    /* 选项：点标签、点圆点、点文字都算选它一次（已选中的再点也能前进） */
+    var opt = t.closest && t.closest('.opt');
+    if (opt) {
+      var inp = opt.querySelector('input[name="ans"]');
+      if (inp) { choose(+inp.value); return; }
+    }
+    if (t.closest('[data-qmap]')) {
+      var p = document.getElementById('qmap');
+      var willOpen = p ? p.hidden : false;
+      openQmap(willOpen);
+      if (willOpen) {
+        var act = document.querySelector('[data-qmap-clear]');
+        if (act) act.textContent = '清空重答';
+      }
+      return;
+    }
+    if (t.closest('[data-qmap-close]')) { closeQmap(); return; }
+    if (t.closest('[data-qmap-clear]')) {
+      var btn = t.closest('[data-qmap-clear]');
+      if (btn.textContent === '再点一次确认') {
+        if (clearArmTimer) { clearTimeout(clearArmTimer); clearArmTimer = null; }
+        clearAnswers();
+        return;
+      }
+      btn.textContent = '再点一次确认';
+      clearArmTimer = setTimeout(function () {
+        clearArmTimer = null;
+        var b = document.querySelector('[data-qmap-clear]');
+        if (b) b.textContent = '清空重答';
+      }, 3000);
+      return;
+    }
+    var qbtn = t.closest('[data-q]');
+    if (qbtn) {
+      var n = +qbtn.getAttribute('data-q');
+      if (state.index !== n - 1) jump(n);
+      else {
+        // 点当前题：只关闭面板
+        var c = document.querySelector('[data-qmap-clear]');
+        if (c) c.textContent = '清空重答';
+        closeQmap();
+      }
+      return;
+    }
     if (e.target.closest('[data-back]')) { back(); return; }
     if (e.target.closest('[data-copy]')) {
       var url = location.href;
@@ -3663,10 +3873,12 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
   });
 
   document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && qmapOpen) { closeQmap(); return; }
     if (e.target && /^(INPUT|TEXTAREA)$/.test(e.target.tagName) && e.target.type === 'text') return;
     if (document.getElementById('nameInput') && e.target === document.getElementById('nameInput')) return;
     var view = app.getAttribute('data-view');
     if (view !== 'test') return;
+    if (qmapOpen) return;
     var item = order()[state.index];
     if (!item) return;
     if ((e.key >= '1' && e.key <= '5') || (e.key >= 'a' && e.key <= 'd')) {
@@ -3675,6 +3887,13 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
       if (item.kind === 'scenario' && n <= 3) { e.preventDefault(); choose(n); }
     }
     if (e.key === 'ArrowLeft' || e.key === 'Backspace') { e.preventDefault(); back(); }
+  });
+
+  /* 点索引面板以外的地方就关掉 */
+  document.addEventListener('click', function (e) {
+    if (!qmapOpen) return;
+    if (e.target.closest && (e.target.closest('.qmap') || e.target.closest('[data-qmap]'))) return;
+    closeQmap();
   });
 
   window.addEventListener('hashchange', route);
