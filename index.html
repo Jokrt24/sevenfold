@@ -846,6 +846,22 @@ button.barCount:hover, button.barCount:focus-visible, button.barCount[aria-expan
   .detTag { color: #7a6a3a; }
 }
 
+/* ������������������ �����ͼԤ���� ������������������ */
+.cardGate { position: fixed; inset: 0; z-index: 120; display: flex; flex-direction: column; background: rgba(4,4,6,.97); overflow: auto; -webkit-overflow-scrolling: touch; }
+.cardGateHead { position: sticky; top: 0; z-index: 2; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 18px calc(14px + env(safe-area-inset-bottom, 0px)); padding-bottom: 14px; font-size: 13px; letter-spacing: .04em; color: rgba(232,227,218,.7); background: linear-gradient(180deg, rgba(4,4,6,.98), rgba(4,4,6,.86)); }
+.cardGateClose { width: 34px; height: 34px; border-radius: 50%; border: 1px solid rgba(232,227,218,.22); background: transparent; color: #E8E3DA; font-size: 18px; line-height: 1; cursor: pointer; }
+.cardGateClose:hover { border-color: rgba(198,166,100,.6); color: #C6A664; }
+.cardGateBody { display: flex; flex-direction: column; align-items: center; gap: 16px; padding: 4px 12px 24px; }
+.cardShot { width: 100%; max-width: 560px; height: auto; display: block; border-radius: 8px; box-shadow: 0 18px 50px rgba(0,0,0,.55); }
+.cardGateFoot { position: sticky; bottom: 0; padding: 14px 16px calc(16px + env(safe-area-inset-bottom, 0px)); display: flex; justify-content: center; background: linear-gradient(0deg, rgba(4,4,6,.98), rgba(4,4,6,0)); }
+body.cardGateOn { overflow: hidden; }
+
+/* ��ͼԤ���������л� */
+.cardGateSeg { display: inline-flex; gap: 6px; margin-left: auto; margin-right: 10px; }
+.cardSeg { padding: 6px 12px; border-radius: 999px; border: 1px solid rgba(232,227,218,.22); background: transparent; color: rgba(232,227,218,.6); font-size: 12px; letter-spacing: .04em; cursor: pointer; }
+.cardSeg:hover { border-color: rgba(198,166,100,.6); color: #C6A664; }
+.cardSeg.on { border-color: rgba(198,166,100,.85); color: #C6A664; background: rgba(198,166,100,.10); }
+
 </style>
 <noscript><style>.view{display:none}#nojs{display:block}</style></noscript>
 </head>
@@ -1775,6 +1791,72 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
 
 </script>
 <script>
+/* 七重 SEVENFOLD — 频率刻度归属
+   每个面用一套频率刻度，同面的两道「做法」题共用，反向题跟随所属面。
+   A 常发型：一天之内可能发生多次
+   B 常事型：一周到一个月几次
+   C 稀有型：一年没几次 */
+(self.SF = self.SF || {}).FREQ_BAND = {
+  /* ── 七罪 ── */
+  inv1: 'B', inv2: 'B', inv3: 'A', inv4: 'C',
+  sup1: 'B', sup2: 'B', sup3: 'B', sup4: 'B',
+  ira1: 'B', ira2: 'C', ira3: 'C', ira4: 'B',
+  ace1: 'B', ace2: 'A', ace3: 'C', ace4: 'B',
+  ava1: 'B', ava2: 'C', ava3: 'C', ava4: 'B',
+  gul1: 'B', gul2: 'B', gul3: 'C', gul4: 'B',
+  lux1: 'C', lux2: 'A', lux3: 'C', lux4: 'B',
+  /* ── 七德 ── */
+  hum1: 'C', hum2: 'B', hum3: 'B',
+  ben1: 'B', ben2: 'B', ben3: 'B',
+  pat1: 'B', pat2: 'C', pat3: 'B',
+  dil1: 'B', dil2: 'A', dil3: 'B',
+  lib1: 'C', lib2: 'C', lib3: 'B',
+  tem1: 'B', tem2: 'B', tem3: 'B',
+  cas1: 'C', cas2: 'C', cas3: 'B'
+};
+
+</script>
+<script>
+/* 七重 SEVENFOLD — 结果长图上的二维码（预生成，页面只负责画方块）
+   重新生成：python tools/make-qr.mjs（需要 python qrcode 库） */
+(self.SF = self.SF || {}).QR = {
+  url: 'https://jokrt24.github.io/sevenfold/',
+  size: 29,
+  rows: [
+    '11111110110010100110101111111',
+    '10000010000010001101101000001',
+    '10111010001001000101001011101',
+    '10111010100010101010001011101',
+    '10111010110111110110001011101',
+    '10000010100001100011001000001',
+    '11111110101010101010101111111',
+    '00000000110100110110100000000',
+    '10001011101011100101011111001',
+    '00100000110010011110011111111',
+    '00111111000011111010001110001',
+    '01000000011101010110011101011',
+    '00000010101101010110100100010',
+    '10100100001101111110011111111',
+    '01010110001010010010011011101',
+    '01001101000100100110110110011',
+    '11000011100001110101000000010',
+    '11001000010110011000011111011',
+    '00001011000101111000101010101',
+    '00010000011101000110011010011',
+    '11010010101101000100111111001',
+    '00000000111101111011100010001',
+    '11111110111100011111101011101',
+    '10000010011110100111100010011',
+    '10111010110011110101111111010',
+    '10111010011100011000000000001',
+    '10111010011001110011010001111',
+    '10000010001000110100100111011',
+    '11111110110001100100101001010'
+  ]
+};
+
+</script>
+<script>
 /* 七重 SEVENFOLD — 身份与措辞变体
    身份只改题面措辞，不改题目 id、不改计分、不进分享链接。
    规则：能中性的就中性；只有场景本身离不开身份时才写变体。 */
@@ -2678,6 +2760,499 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
 })(self.SF = self.SF || {});
 
 </script>
+<script>
+/* 七重 SEVENFOLD — 结果长图（Canvas 排版）
+   把结果页的全部内容画进一张（或几张）长图，底部带二维码。
+   说明：这里的文字与结果页同源同义，改动时两边要一起改。
+   SF.card.render(R, opts) → { pages: [canvas], texts: [string], dryRun } */
+(self.SF = self.SF || {}).card = (function () {
+  var W = 1000;
+  var PAD = 64;
+  var PAGE_H = 9000;
+  var FOOT_H = 150; /* 每页底部页脚（小二维码）高度 */
+  var GOLD = '#C6A664';
+  var INK = '#E8E3DA';
+  var DIM = 'rgba(232,227,218,0.62)';
+  var FAINT = 'rgba(232,227,218,0.38)';
+  var LINE = 'rgba(232,227,218,0.14)';
+
+  var SERIF = '"Noto Serif SC","Source Han Serif SC","Songti SC",STSong,serif';
+  var LATIN = '"Cinzel",Georgia,serif';
+  var NUM = '"Cormorant Garamond",Georgia,serif';
+
+  function stubCtx() {
+    var noop = function () { };
+    return {
+      font: '', fillStyle: '', strokeStyle: '', lineWidth: 1, textAlign: 'left', globalAlpha: 1,
+      measureText: function (t) {
+        var w = 0;
+        for (var i = 0; i < t.length; i++) w += t.charCodeAt(i) < 128 ? 13 : 26;
+        return { width: w };
+      },
+      fillText: noop, fillRect: noop, strokeRect: noop, beginPath: noop, closePath: noop,
+      moveTo: noop, lineTo: noop, stroke: noop, fill: noop, arc: noop, save: noop, restore: noop,
+      translate: noop, rotate: noop, setLineDash: noop,
+      createRadialGradient: function () { return { addColorStop: noop }; },
+      createLinearGradient: function () { return { addColorStop: noop }; }
+    };
+  }
+
+  function stripPunct(s) {
+    return String(s || '').replace(/[。！？；，]+$/, '');
+  }
+
+  /* 二分找出能装进 pages 页的最小页高（页数随页高单调减少） */
+  function fitPageH(R, opts, pages, totalH) {
+    var lo = Math.ceil(totalH / pages) + PAD * 2 + FOOT_H;
+    var hi = 13000, best = -1;
+    for (var i = 0; i < 12; i++) {
+      var mid = Math.floor((lo + hi) / 2);
+      var t = paint(R, opts, true, mid);
+      if (t.pageNo <= pages) { best = mid; hi = mid; } else { lo = mid + 1; }
+      if (lo > hi) break;
+    }
+    return best;
+  }
+
+  function render(R, opts) {
+    opts = opts || {};
+    var dry = !!opts.dryRun;
+    /* 先量一遍总高度，再用二分把内容刚好装进目标页数 */
+    var probe = opts.pageH ? null : paint(R, opts, true, 1e9);
+    var pages = 1, pageH = opts.pageH || PAGE_H;
+    if (probe && probe.h > 0) {
+      var totalH = probe.h + 80;
+      pages = opts.pagesHint
+        ? Math.max(1, Math.min(6, opts.pagesHint))
+        : Math.max(1, Math.ceil(totalH / (opts.perPage || 12000)));
+      var fitted = fitPageH(R, opts, pages, totalH);
+      if (fitted < 0) {
+        /* 目标页数装不下（单页会超过高度上限），自动加一页 */
+        pages = Math.min(6, pages + 1);
+        opts.fellBack = true;
+        fitted = fitPageH(R, opts, pages, totalH);
+      }
+      pageH = fitted > 0 ? fitted : Math.min(13000, Math.ceil(totalH / pages) + PAD * 2 + FOOT_H + 400);
+    }
+    var out = paint(R, opts, dry, pageH);
+    if (!dry) {
+      /* 最后一页按实际内容裁掉尾部空白，再给每页补上页脚（小二维码） */
+      var last = out.pages[out.pages.length - 1];
+      var want = Math.min(last.height, Math.round(out.h) + PAD + FOOT_H);
+      if (want > 200 && want < last.height - 20) {
+        var c2 = document.createElement('canvas');
+        c2.width = last.width; c2.height = want;
+        c2.getContext('2d').drawImage(last, 0, 0);
+        out.pages[out.pages.length - 1] = c2;
+      }
+      out.pages.forEach(function (cv, i) { drawFoot(cv, i + 1, out.pages.length); });
+    }
+    return out;
+  }
+
+  /* 每页底部：小二维码 + 网址 + 署名 */
+  function drawFoot(cv, idx, total) {
+    var x = cv.getContext('2d');
+    var qr = SF.QR;
+    var h = cv.height, base = h - FOOT_H + 18;
+    x.strokeStyle = LINE; x.lineWidth = 2;
+    x.beginPath(); x.moveTo(PAD, base - 26); x.lineTo(W - PAD, base - 26); x.stroke();
+    var qs = 96, qx = PAD, qy = base;
+    if (qr) {
+      var pad = 8;
+      x.fillStyle = '#F2EDE3'; x.fillRect(qx - pad, qy - pad, qs + pad * 2, qs + pad * 2);
+      x.fillStyle = '#0A0A0C';
+      var cell = qs / qr.size;
+      for (var r = 0; r < qr.size; r++) {
+        for (var c = 0; c < qr.size; c++) {
+          if (qr.rows[r][c] === '1') x.fillRect(qx + c * cell, qy + r * cell, cell + 0.5, cell + 0.5);
+        }
+      }
+    }
+    x.textAlign = 'left';
+    x.fillStyle = 'rgba(232,227,218,0.72)';
+    x.font = '22px ' + SERIF;
+    x.fillText('扫码进入首页，自己测一遍', qx + qs + 26, qy + 34);
+    x.fillStyle = 'rgba(232,227,218,0.38)';
+    x.font = '19px ' + SERIF;
+    x.fillText(qr ? qr.url : 'https://jokrt24.github.io/sevenfold/', qx + qs + 26, qy + 66);
+    x.textAlign = 'right';
+    x.fillText('七重 · ' + idx + ' / ' + total + '　by KevinJokrt', W - PAD, qy + 34);
+  }
+
+  function paint(R, opts, dry, pageH) {
+    var texts = [];
+    var pages = [];
+    var c, x, y = PAD, pageNo = 0;
+
+    function newPage() {
+      pageNo++;
+      if (x && !dry) pages.push(c);
+      c = dry ? null : document.createElement('canvas');
+      if (!dry) {
+        c.width = W; c.height = pageH;
+        x = c.getContext('2d');
+        x.fillStyle = '#07070A'; x.fillRect(0, 0, W, pageH);
+        var g = x.createLinearGradient(0, 0, 0, pageH);
+        g.addColorStop(0, 'rgba(198,166,100,0.07)');
+        g.addColorStop(0.5, 'rgba(0,0,0,0)');
+        x.fillStyle = g; x.fillRect(0, 0, W, pageH);
+      } else {
+        x = stubCtx();
+      }
+      y = PAD;
+    }
+
+    function need(h) {
+      if (y + h > pageH - PAD - FOOT_H) newPage();
+    }
+
+    function font(size, family, weight) {
+      x.font = (weight ? weight + ' ' : '') + size + 'px ' + (family || SERIF);
+    }
+
+    function measure(t, f) {
+      x.font = f || x.font;
+      return x.measureText(t).width;
+    }
+
+    var NO_START = '。，、；：！？）】」』”’…%';
+    var NO_END = '（【「『“‘';
+
+    function wrap(text, maxW, f) {
+      x.font = f || x.font;
+      var out = [];
+      String(text).replace(/\r/g, '').split('\n').forEach(function (para) {
+        var cur = '';
+        for (var i = 0; i < para.length; i++) {
+          var ch = para[i];
+          var t = cur + ch;
+          if (measure(t) > maxW && cur) {
+            /* 标点不落行首：把上一行最后一个字带下来 */
+            if (NO_START.indexOf(ch) >= 0) {
+              out.push(cur.slice(0, -1));
+              cur = cur.slice(-1) + ch;
+            } else if (NO_END.indexOf(cur[cur.length - 1]) >= 0) {
+              out.push(cur.slice(0, -1));
+              cur = cur.slice(-1) + ch;
+            } else {
+              out.push(cur);
+              cur = ch;
+            }
+          } else cur = t;
+        }
+        if (cur) out.push(cur);
+      });
+      return out;
+    }
+
+    function line(t, size, color, opt) {
+      opt = opt || {};
+      font(size, opt.family, opt.weight);
+      var lh = opt.lh || Math.round(size * 1.42);
+      var maxW = opt.maxW || (W - PAD * 2);
+      var ls = wrap(t, maxW);
+      need(ls.length * lh + (opt.gap || 0));
+      x.fillStyle = color || INK;
+      x.textAlign = 'left';
+      for (var i = 0; i < ls.length; i++) {
+        var yy = y + size;
+        if (!dry) x.fillText(ls[i], opt.x || PAD, yy);
+        texts.push(ls[i]);
+        y += lh;
+      }
+      y += opt.gap || 0;
+    }
+
+    function rule(gap) {
+      need(2);
+      if (!dry) {
+        x.strokeStyle = LINE; x.lineWidth = 2;
+        x.beginPath(); x.moveTo(PAD, y); x.lineTo(W - PAD, y); x.stroke();
+      }
+      y += gap || 24;
+    }
+
+    function kicker(zh, en) {
+      need(60);
+      font(20, SERIF);
+      x.fillStyle = GOLD; x.textAlign = 'left';
+      var t = zh + '  ' + (en || '');
+      if (!dry) x.fillText(t, PAD, y + 20);
+      texts.push(zh);
+      y += 44;
+    }
+
+    function bar(label, value, max, right) {
+      need(56);
+      font(26, SERIF);
+      x.fillStyle = INK; x.textAlign = 'left';
+      if (!dry) x.fillText(label, PAD, y + 26);
+      texts.push(label);
+      var bx = PAD + 300, bw = 380;
+      x.fillStyle = 'rgba(232,227,218,0.12)';
+      if (!dry) x.fillRect(bx, y + 18, bw, 4);
+      x.fillStyle = GOLD;
+      if (!dry) x.fillRect(bx, y + 18, Math.max(2, bw * Math.min(1, value / max)), 4);
+      if (right) {
+        font(22, SERIF);
+        x.fillStyle = FAINT; x.textAlign = 'right';
+        if (!dry) x.fillText(right, W - PAD, y + 26);
+        texts.push(right);
+      }
+      y += 52;
+    }
+
+    function radar(R2) {
+      need(720);
+      var cx = W / 2, cy = y + 330, rad = 250;
+      var axes = R2.ranking || [];
+      var n = axes.length || 1;
+      function pt(i, k) {
+        var a = -Math.PI / 2 + i * 2 * Math.PI / n;
+        return [cx + Math.cos(a) * rad * k, cy + Math.sin(a) * rad * k];
+      }
+      if (!dry) {
+        for (var ring = 1; ring <= 4; ring++) {
+          x.strokeStyle = 'rgba(232,227,218,0.10)'; x.lineWidth = 1.5;
+          x.beginPath();
+          for (var i2 = 0; i2 < n; i2++) {
+            var p2 = pt(i2, ring / 4);
+            if (i2 === 0) x.moveTo(p2[0], p2[1]); else x.lineTo(p2[0], p2[1]);
+          }
+          x.closePath(); x.stroke();
+        }
+      }
+      var vals = axes.map(function (a) { return Math.max(0.06, (a.score || 0) / 100); });
+      if (!dry) {
+        x.beginPath();
+        vals.forEach(function (v, i3) {
+          var p3 = pt(i3, v);
+          if (i3 === 0) x.moveTo(p3[0], p3[1]); else x.lineTo(p3[0], p3[1]);
+        });
+        x.closePath();
+        x.fillStyle = 'rgba(198,166,100,0.16)'; x.fill();
+        x.strokeStyle = GOLD; x.lineWidth = 2.5; x.stroke();
+      }
+      axes.forEach(function (a, i4) {
+        var p4 = pt(i4, vals[i4]);
+        if (!dry) {
+          x.fillStyle = GOLD;
+          x.beginPath(); x.arc(p4[0], p4[1], 4.5, 0, Math.PI * 2); x.fill();
+        }
+        var lp = pt(i4, 1.17);
+        font(20, SERIF);
+        x.fillStyle = DIM;
+        x.textAlign = lp[0] < cx - 20 ? 'right' : lp[0] > cx + 20 ? 'left' : 'center';
+        if (!dry) x.fillText(a.zh, lp[0], lp[1] + 7);
+        texts.push(a.zh + ' ' + (a.score || 0));
+      });
+      y += 700;
+    }
+
+    function interpretLines(R2) {
+      var t = R2.top3 || [], axAll = {};
+      (SF.AXES || []).forEach(function (a) { axAll[a.id] = a; });
+      var lines = [];
+      if (!t.length) return lines;
+      var a = t[0], b = t[1] || a, cc = t[2] || a;
+      var pairOfA = SF.PAIRS[a.id] || (axAll[a.id] && axAll[a.id].pair);
+      lines.push('你的前三位是「' + a.zh + '」' + a.score + '、「' + b.zh + '」' + b.score + '、「' + cc.zh + '」' + cc.score + '。');
+      if (pairOfA === b.id) {
+        lines.push('前两位正好是同一对的两端。这不是矛盾：同一条轴的两侧你都站得很高，说明这块地方被你反复经过——既怕它落在别人那边，又常常用另一边的方式去补。');
+      } else if (axAll[a.id] && axAll[b.id]) {
+        lines.push('「' + a.zh + '」和「' + b.zh + '」不在同一条轴上，它们各自独立地高。放在一起看，通常是前者先动、后者收尾：' + stripPunct(axAll[a.id].essence) + '；而' + stripPunct(axAll[b.id].essence) + '。');
+      }
+      lines.push(cc.score >= 60
+        ? '第三位的「' + cc.zh + '」也站在前面（' + cc.score + '）。三条同时在高的地方，通常是你最用力维持的样子，也是最容易被一句话戳破的地方。'
+        : '第三位的「' + cc.zh + '」是这块地方的退路：当上面两条撑不住时，你会退到这里。它自己不算强，但它决定了你崩下来时的样子。');
+      var d0 = R2.detail && R2.detail[0];
+      if (d0 && d0.facets && d0.facets[0]) {
+        lines.push('最容易失手的场景，是' + stripPunct(d0.facets[0].cost) + '。这句话描述的不是性格，是已经发生过的后果。');
+      }
+      if (R2.gap && R2.gap.door && R2.gap.bite) {
+        var d1 = R2.gap.door, d2 = R2.gap.bite;
+        lines.push('再往下看一层：「' + d1.name + '」上你难受得多、付出得少（强度 ' + d1.str.toFixed(1) + '，代价 ' + d1.cost.toFixed(1) + '），它还在门口；而「'
+          + d2.name + '」上你几乎不觉得疼，代价却已经在扣（强度 ' + d2.str.toFixed(1) + '，代价 ' + d2.cost.toFixed(1) + '）。前者会吵，后者才要紧。');
+      } else if (R2.gap && R2.gap.bite) {
+        var b1 = R2.gap.bite;
+        lines.push('值得留意的是「' + b1.name + '」：它不太让你难受（强度 ' + b1.str.toFixed(1) + '），代价却已经落在你身上（' + b1.cost.toFixed(1) + '）。不疼的地方最容易拖。');
+      } else if (R2.gap && R2.gap.door) {
+        var g1 = R2.gap.door;
+        lines.push('「' + g1.name + '」的分量主要在感受上（强度 ' + g1.str.toFixed(1) + '），代价还停在 ' + g1.cost.toFixed(1) + '——它吵，但还没真正咬到你。');
+      }
+      return lines;
+    }
+
+    /* ── 1. 判词头图 ── */
+    newPage();
+    font(24, LATIN, '600');
+    x.fillStyle = GOLD; x.textAlign = 'left';
+    if (!dry) x.fillText('S E V E N F O L D', PAD, y + 40);
+    texts.push('SEVENFOLD');
+    y += 112;
+
+    var v = R.verdictAxis;
+    line(opts.name ? '「' + opts.name + '」的判词' : '七重 · 判词', 26, DIM, { gap: 26 });
+    font(126, SERIF, '600');
+    need(150);
+    x.fillStyle = INK;
+    if (!dry) x.fillText(v.zh, PAD - 6, y + 112);
+    texts.push(v.zh);
+    y += 150;
+    line(v.latin, 30, GOLD, { family: LATIN, gap: 18 });
+    line(v.essence || '', 32, 'rgba(232,227,218,0.86)', { gap: 30 });
+
+    need(150);
+    font(96, NUM, '300');
+    x.fillStyle = INK;
+    if (!dry) x.fillText(String(v.score), PAD - 4, y + 88);
+    texts.push(String(v.score));
+    font(24, SERIF);
+    x.fillStyle = FAINT; x.textAlign = 'left';
+    if (!dry) x.fillText('/ 100 · 内部刻度 · ' + v.band, PAD + 170, y + 78);
+    texts.push('内部刻度 ' + v.band);
+    y += 120;
+
+    rule(20);
+    line('七罪 ' + R.viceMean + '　·　七德 ' + R.virtueMean + '　·　差 ' + Math.abs(R.delta), 28, DIM, { gap: 34 });
+
+    /* ── 2. 十四芒镜 ── */
+    kicker('十四芒镜', 'FOURTEEN MIRRORS');
+    radar(R);
+    rule(20);
+
+    /* ── 3. 形态 ── */
+    kicker('形态', 'ASPECTS OF ' + String(v.latin).toUpperCase());
+    line('下面这几个面里，最重的是「' + (R.form.top.map(function (f) { return f.name; }).join('」和「')) + '」。', 26, DIM, { gap: 26 });
+    R.form.facets.forEach(function (f) {
+      bar(f.name, f.value, 4, SF.LEVELS[SF.level(f.value)]);
+    });
+    y += 20;
+
+    /* ── 4. 七对刻度 ── */
+    kicker('七对刻度', 'SEVEN PAIRS');
+    R.pairs.forEach(function (p) {
+      need(64);
+      font(24, SERIF);
+      x.fillStyle = INK; x.textAlign = 'left';
+      var left = p.sin.zh + ' ' + p.sinShare;
+      if (!dry) x.fillText(left, PAD, y + 24);
+      texts.push(left);
+      x.fillStyle = 'rgba(232,227,218,0.12)';
+      if (!dry) { x.fillRect(PAD + 300, y + 16, 380, 4); }
+      x.fillStyle = GOLD;
+      if (!dry) x.fillRect(PAD + 300, y + 16, Math.max(2, 380 * p.sinShare / 100), 4);
+      font(22, SERIF);
+      x.fillStyle = FAINT; x.textAlign = 'right';
+      var right = p.virtue.zh + ' ' + p.virtueShare;
+      if (!dry) x.fillText(right, W - PAD, y + 24);
+      texts.push(right);
+      y += 52;
+    });
+    rule(20);
+
+    /* ── 5. 解读 ── */
+    kicker('解读', 'READING');
+    interpretLines(R).forEach(function (p) {
+      line(p, 27, 'rgba(232,227,218,0.88)', { gap: 22 });
+    });
+    rule(20);
+
+    /* ── 6. 逐面详解（深度） ── */
+    if (R.mode === 'deep' && R.detail) {
+      kicker('逐面详解', 'FACET BY FACET');
+      line('十四个轴、四十九个面，按分数从高到低。每个面写下：分数、频率强度代价三个数、它是什么、你会做什么、代价、可以练什么。', 23, FAINT, { gap: 30 });
+      R.detail.forEach(function (d) {
+        need(200);
+        y += 26;
+        font(32, SERIF, '600');
+        x.fillStyle = GOLD; x.textAlign = 'left';
+        var head = d.zh + '  ' + d.axis.score;
+        if (!dry) x.fillText(head, PAD, y + 30);
+        texts.push(head + ' ' + d.latin);
+        y += 44;
+        line(d.essence || '', 23, DIM, { gap: 8 });
+        (Array.isArray(d.long) ? d.long : [d.long]).forEach(function (para) {
+          if (para) line(para, 22, 'rgba(232,227,218,0.76)', { gap: 12 });
+        });
+        d.facets.forEach(function (f) {
+          need(300);
+          font(26, SERIF, '600');
+          x.fillStyle = INK; x.textAlign = 'left';
+          var nm = '· ' + f.name + '　' + f.levelText;
+          if (!dry) x.fillText(nm, PAD + 8, y + 26);
+          texts.push(f.name);
+          y += 36;
+          if (f.freq != null && f.str != null && f.costDim != null) {
+            line('频率 ' + f.freq.toFixed(1) + '　强度 ' + f.str.toFixed(1) + '　代价 ' + f.costDim.toFixed(1)
+              + (f.trio ? '　组合 ' + f.trio : ''), 22, GOLD, { gap: 8 });
+          }
+          line(f.def, 23, 'rgba(232,227,218,0.9)', { gap: 8 });
+          line('你会：' + (f.signals || []).join('；'), 21, DIM, { gap: 6 });
+          line('代价：' + f.cost, 21, DIM, { gap: 6 });
+          line('练习：' + f.practice, 21, 'rgba(198,166,100,0.85)', { gap: 12 });
+        });
+      });
+      rule(20);
+    }
+
+    /* ── 7. 最贵的三个面 ── */
+    if (R.mode === 'deep' && R.costRank && R.costRank.costly.length) {
+      kicker('最贵的三个面', 'WHERE IT COSTS');
+      R.costRank.costly.forEach(function (it, i) {
+        line('0' + (i + 1) + '　' + it.name + '（' + it.axisZh + '）', 26, INK, { weight: '600', gap: 6 });
+        line('频率 ' + it.freq.toFixed(1) + '　强度 ' + it.str.toFixed(1) + '　代价 ' + it.cost.toFixed(1), 22, GOLD, { gap: 6 });
+        line(stripPunct(it.costText), 24, DIM, { gap: 18 });
+      });
+      line('还在白拿：' + (R.costRank.free.length
+        ? R.costRank.free.map(function (x) { return x.name + '（' + x.axisZh + '）'; }).join('、')
+        : '没有明显白拿的部分：你现在花掉的东西，基本都对应着真实的代价。'), 23, DIM, { gap: 22 });
+      rule(20);
+    }
+
+    /* ── 8. 情境对照 ── */
+    if (R.mode === 'deep' && R.scenario && R.scenario.picks.length) {
+      kicker('情境对照', 'IN THE MOMENT');
+      line('情境题只有一个正确答案：你当时的那个反应。下面是它落在哪一面。', 22, FAINT, { gap: 24 });
+      R.scenario.picks.forEach(function (p, i) {
+        line((i + 1 < 10 ? '0' : '') + (i + 1) + '　' + p.text, 23, 'rgba(232,227,218,0.8)', { gap: 6 });
+        line('你选：' + p.option + (p.facetName ? '　→ ' + p.facetName : ''), 23, GOLD, { gap: 18 });
+      });
+      rule(20);
+    }
+
+    /* ── 9. 守护 / 练习 ── */
+    var guard = R.secondAxis;
+    if (guard) {
+      var axMap = {};
+      (SF.AXES || []).forEach(function (a) { axMap[a.id] = a; });
+      var pr = SF.PRACTICES && SF.PRACTICES[v.kind === 'vice' ? v.id : (axMap[v.id] || {}).pair];
+      kicker(v.kind === 'vice' ? '守护' : '对侧', String(guard.latin || '').toUpperCase());
+      line(guard.zh + '  ' + guard.score + '　' + (guard.band || ''), 26, INK, { gap: 10 });
+      line(v.kind === 'vice' ? (axMap[v.id] || {}).ally || '' : (axMap[v.id] || {}).foreign || '', 24, DIM, { gap: 20 });
+      if (pr) {
+        line(pr.title, 24, GOLD, { gap: 8 });
+        pr.steps.forEach(function (s, i) { line((i + 1) + '. ' + s, 23, DIM, { gap: 6 }); });
+      }
+      rule(20);
+    }
+
+    /* ── 10. 收尾（二维码与网址在每页页脚统一画） ── */
+    need(120);
+    y += 16;
+    line('自我观察工具，不是心理或医学诊断　·　by KevinJokrt', 21, FAINT, { gap: 10 });
+    texts.push('二维码');
+    if (SF.QR) texts.push(SF.QR.url);
+
+    if (!dry) pages.push(c);
+    return { pages: pages, texts: texts, pageH: pageH, h: y, pageNo: pageNo };
+  }
+
+  return { render: render, W: W, PAGE_H: PAGE_H };
+})();
+
+</script>
 
 <script>
 /* 七重 SEVENFOLD — 音乐引擎（<audio> 流式，整首循环）
@@ -2909,8 +3484,14 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
   var LIMITS = SF.LIMITS;
   var SCALES = {
     freq: { legend: '这种事多久发生一次', labels: ['从没', '一两次', '有时', '经常', '几乎总是'] },
-    str: { legend: '当时的反应有多强', labels: ['完全没有', '很轻', '一般', '明显', '很强烈'] },
-    cost: { legend: '这件事发生过几次', labels: ['没有', '有过一次', '有过几次', '经常发生', '几乎每次都是'] }
+    str: { legend: '当时的反应有多强', labels: ['完全没有', '很轻', '一般', '明显', '强烈到影响手上正在做的事'] },
+    cost: { legend: '这件事发生过几次', labels: ['没有', '有过一次', '有过几次', '最近半年好几次', '一直在发生'] }
+  };
+  /* 频率按面分三套：常发 / 常事 / 稀有 */
+  var FREQ_SCALES = {
+    A: { legend: '过去一个月，这种事大概几次', labels: ['从没', '一两次（一个月）', '每周都有', '每天都有', '一天好几次'] },
+    B: { legend: '过去一个月，这种事大概几次', labels: ['从没', '一两次（一个月）', '一个月三四次', '每周都有', '几乎每天'] },
+    C: { legend: '过去一年，这种事大概几次', labels: ['从没', '一两次（一年）', '半年一次', '两三个月一次', '一个月就有'] }
   };
   var ACTS = {
     simple: [
@@ -3271,17 +3852,20 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
           }).join('')
         + '</fieldset>';
     } else {
-      var scaleKey = item.rev ? 'freq' : (item.dim || 'freq');
-      var scale = SCALES[scaleKey] || SCALES.freq;
+      var facetId = String(item.id).split('~')[0];
       var dimKey = item.rev ? 'freq' : (item.dim || 'freq');
+      var band = (SF.FREQ_BAND && SF.FREQ_BAND[facetId]) || 'B';
+      var scale = dimKey === 'freq' ? (FREQ_SCALES[band] || FREQ_SCALES.B) : (SCALES[dimKey] || SCALES.freq);
       var dimLabel = { freq: '你的做法', str: '当时的感觉', cost: '后来发生的事' }[dimKey] || '你的做法';
-      var dimHint = {
-        freq: '过去一个月里，这种事多久发生一次',
-        str: '不是问你做了什么，是那一刻心里或身上的反应',
-        cost: '已经发生的结果，能数出几次'
-      }[dimKey];
-      var firstTime = !seenDims[dimKey];
-      seenDims[dimKey] = true;
+      var dimHint = dimKey === 'freq'
+        ? scale.legend
+        : {
+          str: '不是问你做了什么，是那一刻心里或身上的反应',
+          cost: '已经发生的结果，能数出几次'
+        }[dimKey];
+      var hintKey = dimKey === 'freq' ? 'freq:' + band : dimKey;
+      var firstTime = !seenDims[hintKey];
+      seenDims[hintKey] = true;
       body = ''
         + '<p class="qKicker">' + dimLabel + ' · ' + String(idx + 1).padStart(2, '0') + '</p>'
         + '<h2 class="qText">' + esc(SF.itemText(String(item.id).split('~')[0], item.dim, state.identity, item.text)) + '</h2>'
@@ -3951,7 +4535,7 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
       + '      <button class="btnSmall" type="button" data-savename>保存</button></div>'
       + '    <div class="shareBtns">'
       + '      <button class="btn" type="button" data-copy>复制结果链接</button>'
-      + '      <button class="btnGhost" type="button" data-card>下载分享卡</button>'
+      + '      <button class="btn" type="button" data-card>保存结果长图</button>'
       + '      <button class="btnGhost" type="button" data-native hidden>系统分享</button>'
       + '    </div>'
       + '    <p class="urlLine"><input id="urlBox" readonly value="' + esc(location.href) + '" aria-label="结果链接"></p>'
@@ -3986,7 +4570,7 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
       host.id = 'cardHost';
       host.className = 'cardHost';
       app.querySelector('.result').insertBefore(host, app.querySelector('.result').firstChild);
-      setTimeout(function () { drawCard(true); }, 60);
+      setTimeout(openCardOverlay, 60);
     }
     focusHead();
   }
@@ -3997,107 +4581,70 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
     return '<section class="card banner"><h3>' + esc(s.title) + '</h3><p>' + esc(s.body) + '</p></section>';
   }
 
-  /* ───────── 分享卡（Canvas） ───────── */
-  function drawCard(preview) {
-    var R = window.__SF_RESULT;
-    if (!R) return;
-    var W = 1080, H = 1350;
-    var c = document.createElement('canvas');
-    c.width = W; c.height = H;
-    var x = c.getContext('2d');
-    var serif = '"Noto Serif SC", "Source Han Serif SC", "Songti SC", STSong, serif';
-    var latin = '"Cinzel", Georgia, serif';
-    var num = '"Cormorant Garamond", Georgia, serif';
-
-    x.fillStyle = '#07070A'; x.fillRect(0, 0, W, H);
-    var grad = x.createRadialGradient(W / 2, 380, 60, W / 2, 520, 900);
-    grad.addColorStop(0, 'rgba(198,166,100,0.10)');
-    grad.addColorStop(1, 'rgba(0,0,0,0)');
-    x.fillStyle = grad; x.fillRect(0, 0, W, H);
-
-    x.strokeStyle = 'rgba(232,227,218,0.14)'; x.lineWidth = 2;
-    x.strokeRect(56, 56, W - 112, H - 112);
-
-    x.fillStyle = '#C6A664';
-    x.font = '600 26px ' + latin;
-    x.textAlign = 'left';
-    x.fillText('S E V E N F O L D', 96, 150);
-
-    x.fillStyle = 'rgba(232,227,218,0.55)';
-    x.font = '24px ' + serif;
-    x.fillText(currentName ? '「' + currentName + '」的判词' : '七重 · 判词', 96, 220);
-
-    var v = R.verdictAxis;
-    x.fillStyle = '#E8E3DA';
-    x.font = '600 168px ' + serif;
-    x.fillText(v.zh, 92, 420);
-
-    x.fillStyle = '#C6A664';
-    x.font = '500 34px ' + latin;
-    x.fillText(v.latin, 96, 486);
-
-    x.fillStyle = 'rgba(232,227,218,0.86)';
-    x.font = '36px ' + serif;
-    x.fillText(ax_essence(v.id), 96, 560);
-
-    x.fillStyle = '#E8E3DA';
-    x.font = '300 104px ' + num;
-    x.fillText(String(v.score), 92, 706);
-    x.fillStyle = 'rgba(232,227,218,0.45)';
-    x.font = '24px ' + serif;
-    x.fillText('/ 100 · 内部刻度 · ' + v.band, 240, 700);
-
-    var fy = 800;
-    R.form.facets.forEach(function (f, i) {
-      var y = fy + i * 82;
-      x.fillStyle = 'rgba(232,227,218,0.92)';
-      x.font = '30px ' + serif;
-      x.fillText(f.name, 96, y);
-      var bx = 300, bw = 480;
-      x.fillStyle = 'rgba(232,227,218,0.14)';
-      x.fillRect(bx, y - 20, bw, 3);
-      x.fillStyle = i === 0 ? '#C6A664' : 'rgba(232,227,218,0.6)';
-      x.fillRect(bx, y - 20, bw * (f.value / 4), 3);
-      x.fillStyle = 'rgba(232,227,218,0.45)';
-      x.font = '22px ' + serif;
-      x.textAlign = 'right';
-      x.fillText(SF.LEVELS[SF.level(f.value)], 940, y);
-      x.textAlign = 'left';
-    });
-
-    x.strokeStyle = 'rgba(232,227,218,0.14)';
-    x.beginPath(); x.moveTo(96, 1150); x.lineTo(W - 96, 1150); x.stroke();
-
-    x.fillStyle = 'rgba(232,227,218,0.8)';
-    x.font = '30px ' + serif;
-    x.fillText('七罪 ' + R.viceMean + '　·　七德 ' + R.virtueMean, 96, 1204);
-
-    x.fillStyle = 'rgba(232,227,218,0.35)';
-    x.font = '22px ' + serif;
-    var u = location.href.split('#')[0].replace(/^file:.*$/, 'sevenfold');
-    x.fillText(u.slice(0, 64) + '　·　自我观察工具，非诊断', 96, 1256);
-
-    function ax_essence(id) {
-      for (var i = 0; i < SF.AXES.length; i++) if (SF.AXES[i].id === id) return SF.AXES[i].essence;
-      return '';
-    }
-
-    if (preview) {
-      c.className = 'cardPreview';
-      var host = document.getElementById('cardHost');
-      if (host) { host.innerHTML = ''; host.appendChild(c); }
-      return;
-    }
-
-    c.toBlob(function (blob) {
+  /* ───────── 结果长图（排版在 card.js） ───────── */
+  function downloadCanvas(cv, idx) {
+    cv.toBlob(function (blob) {
       var a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
-      a.download = 'sevenfold-' + v.latin.toLowerCase() + '.png';
+      a.download = 'sevenfold-' + (idx + 1) + '.jpg';
       document.body.appendChild(a);
       a.click();
-      setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
-      toast('分享卡已下载');
-    }, 'image/png');
+      setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 1200);
+    }, 'image/jpeg', 0.94);
+  }
+
+  function closeCardGate() {
+    var g = document.querySelector('.cardGate');
+    if (g) g.parentNode.removeChild(g);
+    document.body.classList.remove('cardGateOn');
+  }
+
+  function fillGate(gate, R, pagesHint) {
+    var out;
+    try { out = SF.card.render(R, { name: currentName || '', pagesHint: pagesHint }); }
+    catch (err) { toast('生成失败：' + err.message); return false; }
+    if (!out.pages.length) { toast('生成失败'); return false; }
+
+    gate.__pages = out.pages;
+    gate.__hint = out.pages.length;
+    var n = out.pages.length;
+    gate.querySelector('.cardGateHead').innerHTML =
+      '<span>长按图片保存到相册 · 共 ' + n + ' 张</span>'
+      + '<span class="cardGateSeg">'
+      + [2, 3].map(function (k) {
+        return '<button type="button" class="cardSeg' + (k === n ? ' on' : '') + '" data-cardpages="' + k + '">' + k + ' 张</button>';
+      }).join('')
+      + '</span>'
+      + '<button type="button" class="cardGateClose" data-cardclose aria-label="关闭">×</button>';
+    var body = gate.querySelector('.cardGateBody');
+    body.innerHTML = '';
+    out.pages.forEach(function (cv, i) {
+      var img = document.createElement('img');
+      img.className = 'cardShot';
+      img.alt = '结果长图 ' + (i + 1);
+      img.src = cv.toDataURL('image/jpeg', 0.92);
+      img.setAttribute('data-cardimg', String(i));
+      body.appendChild(img);
+    });
+    gate.querySelector('[data-cardall]').textContent = '下载全部 ' + n + ' 张';
+    return true;
+  }
+
+  function openCardOverlay() {
+    var R = window.__SF_RESULT;
+    if (!R || !SF.card) { toast('生成失败，请刷新后重试'); return; }
+    toast('正在生成长图…');
+    setTimeout(function () {
+      var gate = document.createElement('div');
+      gate.className = 'cardGate';
+      gate.innerHTML = '<div class="cardGateHead"></div>'
+        + '<div class="cardGateBody"></div>'
+        + '<div class="cardGateFoot"><button type="button" class="btn" data-cardall>下载全部</button></div>';
+      if (!fillGate(gate, R, R.mode === 'deep' ? 2 : 1)) return;
+      app.appendChild(gate);
+      document.body.classList.add('cardGateOn');
+      toast('图已生成');
+    }, 30);
   }
 
   /* ───────── 事件 ───────── */
@@ -4181,7 +4728,31 @@ self.SF.AXES.forEach(function (a) { a.pair = self.SF.PAIRS[a.id]; });
       }
       return;
     }
-    if (e.target.closest('[data-card]')) { drawCard(); return; }
+    if (e.target.closest('[data-card]')) { openCardOverlay(); return; }
+    var pBtn = e.target.closest('[data-cardpages]');
+    if (pBtn) {
+      var pg = pBtn.closest('.cardGate');
+      var want = parseInt(pBtn.getAttribute('data-cardpages'), 10);
+      if (pg && !pg.__busy && want !== pg.__hint) {
+        pg.__busy = true;
+        toast('正在重新排版…');
+        setTimeout(function () {
+          fillGate(pg, window.__SF_RESULT, want);
+          pg.__busy = false;
+          toast('已切成 ' + pg.__hint + ' 张');
+        }, 30);
+      }
+      return;
+    }
+    if (e.target.closest('[data-cardclose]')) { closeCardGate(); return; }
+    if (e.target.closest('[data-cardall]')) {
+      var gateEl = e.target.closest('.cardGate');
+      var pgs = gateEl && gateEl.__pages ? gateEl.__pages : [];
+      pgs.forEach(function (cv, i) { setTimeout(function () { downloadCanvas(cv, i); }, i * 600); });
+      toast('开始下载 ' + pgs.length + ' 张');
+      return;
+    }
+    if (e.target.closest('.cardGate') && !e.target.closest('.cardShot')) { closeCardGate(); return; }
     if (e.target.closest('[data-csv]')) {
       var ans = window.__SF_ANSWERS || {};
       var lines = ['item,answer'];
